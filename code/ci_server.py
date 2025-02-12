@@ -33,10 +33,11 @@ def webhook():
                     email_response.append_content("Successfull test run")
             email_response.make_response()
             email_response.send_response()
-        except:
-            return
+            return jsonify({"status": "success"}), 200
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)}), 500
     else:
-        return
+        return jsonify({"status": "ignored"}), 400
 
 
 if __name__ == '__main__':

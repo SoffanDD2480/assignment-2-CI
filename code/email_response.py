@@ -27,7 +27,7 @@ class Response:
     def make_response(self):
         self.response["From"] = self.EMAIL_SENDER
         self.response["To"] = self.EMAIL_RECEIVER
-        self.response["subject"] = self.EMAIL_SUBJECT
+        self.response["Subject"] = self.EMAIL_SUBJECT
         body = ""
         for info in self.body:
             body += "\n\n" + str(info)
