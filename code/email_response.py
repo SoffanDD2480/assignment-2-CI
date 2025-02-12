@@ -3,19 +3,19 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import time
 from datetime import datetime
+import os
 
 
 class Response:
     def __init__(self,
                  pusher: tuple,
-                 branch: str
-                 ):
+                 branch: str):
         self.response = MIMEMultipart()
         self.timestamp = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
         self.NAME_RECEIVER = pusher[0]
         self.EMAIL_RECEIVER = pusher[1]
         self.EMAIL_SENDER = "soffan.dd2480@gmail.com"
-        self.EMAIL_PASSWORD = "tmow ikby gdva drcm"
+        self.EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
         self.EMAIL_SUBJECT = f"Results from recent push to branch \"{branch}\" at {self.timestamp}."
         self.SMTP_SERVER = "smtp.gmail.com"
         self.SMTP_PORT = 587  # TLS SMTP port
@@ -31,7 +31,7 @@ class Response:
         body = ""
         for info in self.body:
             body += "\n\n" + str(info)
-        body += "\n\nBest Regards,\nSoffan Team"
+        body += "\n\nBest Regards,\nTeam Soffan"
         self.response.attach(MIMEText(body, "plain"))
 
     def send_response(self):
@@ -41,7 +41,7 @@ class Response:
             server.login(self.EMAIL_SENDER, self.EMAIL_PASSWORD)
             server.sendmail(self.EMAIL_SENDER, self.EMAIL_RECEIVER, self.response.as_string())
             server.quit()
-            print("Email sent successfully!")
+            print("Email sent successfully!", self.EMAIL_RECEIVER)
         except Exception as e:
             print(f"Error sending email: {e}")
-
+            raise
