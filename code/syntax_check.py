@@ -5,6 +5,7 @@ from email_response import Response
 
 def check_syntax_and_formatting(local_code_file, file_path, email_response, logging):
     """
+
     This function first checks the syntax of the given Python file using `pylint`. 
     If the syntax check fails, it logs an error and stops further processing.
     If the syntax check passes, it proceeds to format the file using `black`.
@@ -12,6 +13,34 @@ def check_syntax_and_formatting(local_code_file, file_path, email_response, logg
     Returns a tuple: (bool, str)
     - True, "" if syntax check and formatting pass.
     - False, error_message if syntax check fails.
+    Check and format Python source code files.
+
+    This function performs two operations:
+    1. Syntax validation using Python's AST parser
+    2. Code formatting using Black (if syntax check passes)
+
+    Args:
+        local_code_file (str): Path to the local copy of the file to check
+        file_path (str): Original repository path of the file (for logging/reporting)
+        email_response (Response): Email response object to append results
+        logging: Logger instance for recording operations
+
+    Returns:
+        bool: True if syntax is valid and formatting succeeded, False otherwise
+
+    Example:
+        >>> from email_response import Response
+        >>> import logging
+        >>> logging.basicConfig(level=logging.INFO)
+        >>> email_response = Response(("John", "john@example.com"), "main")
+        >>> result = check_syntax_and_formatting(
+        ...     "local/path/main.py",
+        ...     "code/main.py",
+        ...     email_response,
+        ...     logging
+        ... )
+        >>> print(result)
+        True
     """
 
     syntax_checked, error_message = check_syntax(local_code_file, email_response, logging)
@@ -52,6 +81,25 @@ def check_syntax(file_path, email_response, logging):
         
     Returns:
         tuple: (bool, str) -> True if syntax check passes, False otherwise.
+
+    Args:
+        file_path (str): Path to the Python file to check
+        email_response (Response): Object to store email content.
+        logging: Logger instance for recording operations
+
+    Returns:
+        bool: True if syntax is valid, False if parsing errors found
+
+    Example:
+        >>> import logging
+        >>> logging.basicConfig(level=logging.INFO)
+        >>> is_valid = check_syntax("path/to/valid.py", logging)
+        >>> print(is_valid)
+        True
+        >>> is_valid = check_syntax("path/to/invalid.py", logging)
+        >>> print(is_valid)
+        False
+
     """
 
     try:
@@ -101,6 +149,33 @@ def format_file(file_path, email_response: Response, local_code_file, logging):
     Returns:
         subprocess.CompletedProcess: The result of the Black formatting if successful.
         None: If the formatting fails.
+
+     Example:
+        >>> # Setup logging and email response
+        >>> import logging
+        >>> from email_response import Response
+        >>> logging.basicConfig(level=logging.INFO)
+        >>> email_response = Response(("John", "john@example.com"), "main")
+        >>>
+        >>> # Example with valid Python file
+        >>> result = check_syntax_and_formatting(
+        ...     "local/path/valid.py",
+        ...     "code/valid.py",
+        ...     email_response,
+        ...     logging
+        ... )
+        >>> print(result)
+        True
+        >>>
+        >>> # Example with syntax error
+        >>> result = check_syntax_and_formatting(
+        ...     "local/path/invalid.py",
+        ...     "code/invalid.py",
+        ...     email_response,
+        ...     logging
+        ... )
+        >>> print(result)
+        False
     """
     try:
         result = subprocess.run(
