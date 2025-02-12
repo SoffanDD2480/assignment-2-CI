@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
-import git
 import json
 from syntaxCheck import check_syntax
 from tests import test
 from email_response import Response
+from clone_repo import clone_repo
 
 
 app = Flask(__name__)
@@ -19,8 +19,7 @@ def webhook():
             currentBranch = data["ref"].split("/")[-1]
             pusher = data["pusher"]["name"], data["pusher"]["email"]
             email_response = Response(pusher, currentBranch)
-            git.Repo.clone_from("https://github.com/SoffanDD2480/assignment-2-CI.git",
-                    directory, branch=currentBranch)  # Clone branch repository to sample directory
+            clone_repo(directory, currentBranch)  # Clone branch repository to sample directory
             syntax_check_results = check_syntax(directory + "assignment-2-CI/code/")
             if not syntax_check_results:
                 email_response.append_content("Syntax Error Found")
