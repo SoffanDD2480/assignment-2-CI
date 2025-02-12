@@ -32,8 +32,14 @@ class CompilationCheck():
         
         #Check output of pylint
         """Check the following cases:
+        If the string "syntax-error" is in the output, print "Error: Syntax error detected" and return False.
         If the return code is not 0, print "Error: pylint failed" and return False.
         Otherwise, print "Syntax check passed" and return True."""
+
+        if "syntax-error" in results.stdout:
+            print("Error: Syntax error detected")
+            return False
+
 
         if results.returncode != 0:
             print("Error: pylint failed, Syntax Error detected")
@@ -43,6 +49,6 @@ class CompilationCheck():
             return True
         
 
-
+"""
 if __name__ == "__main__":
-    syntax_checker = CompilationCheck("hello_world.py")
+    syntax_checker = CompilationCheck("hello_world.py")"""
