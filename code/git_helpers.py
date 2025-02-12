@@ -10,9 +10,9 @@ def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str
     Returns the path to the cloned repository.
     """
     repo_path = os.path.join(base_dir, repo_name)
-    # if os.path.exists(repo_path):
-    # shutil.rmtree(repo_path)
-    # git.Repo.clone_from(repo_url, repo_path, branch=branch)
+    if os.path.exists(repo_path):
+        shutil.rmtree(repo_path)
+    git.Repo.clone_from(repo_url, repo_path, branch=branch)
     return repo_path
 
 
