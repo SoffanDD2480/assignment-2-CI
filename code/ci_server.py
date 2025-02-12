@@ -25,12 +25,12 @@ def webhook():
             if not syntax_check_results:
                 email_response.append_content("Syntax Error Found")
             else:
-                email_response.append_content("Successfull syntax check")
+                email_response.append_content("Successful syntax check")
                 unittest_results = test(directory + "assignment-2-CI/code/")
                 if not unittest_results:
-                    email_response.append_content("Message about failed tests")
+                    email_response.append_content("Tests Failed")
                 else:
-                    email_response.append_content("Successfull test run")
+                    email_response.append_content("All tests passed!")
             email_response.make_response()
             email_response.send_response()
             return jsonify({"status": "success"}), 200
