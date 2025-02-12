@@ -41,7 +41,7 @@ class Response:
             server.login(self.EMAIL_SENDER, self.EMAIL_PASSWORD)
             server.sendmail(self.EMAIL_SENDER, self.EMAIL_RECEIVER, self.response.as_string())
             server.quit()
-            print("Email sent successfully!", self.EMAIL_RECEIVER)
+            print("Email sent successfully!")
         except Exception as e:
             print(f"Error sending email: {e}")
             raise
