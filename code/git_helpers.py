@@ -5,9 +5,29 @@ import git
 
 def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str:
     """
-    Clones the repository at repo_url into a subdirectory under base_dir named repo_name.
-    If the directory already exists, it is removed first.
-    Returns the path to the cloned repository.
+    Clone a Git repository to a local directory.
+
+    Args:
+        base_dir (str): Base directory where the repository will be cloned
+        repo_name (str): Name of the directory that will contain the cloned repository
+        branch (str): Branch name to clone
+        repo_url (str): URL of the Git repository to clone
+
+    Returns:
+        str: Absolute path to the cloned repository directory
+
+    Raises:
+        git.GitCommandError: If the clone operation fails
+        OSError: If there are file system related errors during directory cleanup
+    Example:
+        >>> repo_path = clone_repo(
+        ...     base_dir="./.sample_dir/",
+        ...     repo_name="assignment-2-CI",
+        ...     branch="main",
+        ...     repo_url="https://github.com/user/repo.git"
+        ... )
+        >>> print(repo_path)
+        './.sample_dir/assignment-2-CI'
     """
     repo_path = os.path.join(base_dir, repo_name)
     if os.path.exists(repo_path):
@@ -17,6 +37,25 @@ def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str
 
 
 def filterFiles(data):
+    """
+    Filter changed files from a GitHub webhook push event payload.
+
+    Args:
+        data (dict): GitHub webhook push event payload containing commit information
+
+    Returns:
+        list: List of Python file paths that were added or modified in the 'code/' directory
+
+    Example:
+        >>> data = {
+        ...     "commits": [{
+        ...         "added": ["code/test.py"],
+        ...         "modified": ["code/main.py"]
+        ...     }]
+        ... }
+        >>> filterFiles(data)
+        ['code/test.py', 'code/main.py']
+    """
     # Collect changed files from all commits in the push event.
     changed_files = set()
     for commit in data.get("commits", []):

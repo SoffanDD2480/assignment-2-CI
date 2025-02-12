@@ -6,6 +6,7 @@ from syntax_check import check_syntax_and_formatting
 from email_response import Response
 from git_helpers import clone_repo, filterFiles
 from tests import test_changed_code_files
+from generate_docs import generate_docs
 
 app = Flask(__name__)
 
@@ -25,6 +26,50 @@ logging.basicConfig(
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
+    """
+    Handle GitHub webhook POST requests for push events.
+
+    This endpoint processes GitHub push events by:
+    1. Validating the webhook event type
+    2. Extracting push event data (branch, pusher info)
+    3. Cloning the repository
+    4. Checking changed files
+    5. Running syntax checks and tests
+    6. Sending email notifications with results
+
+    Returns:
+        tuple: (JSON response, HTTP status code)
+            - For non-push events: ({"message": "Not a push event"}, 200)
+            - For successful processing: ({"status": "success", "message": "Webhook processed"}, 200)
+            - For errors: ({"status": "error", "message": "<error details>"}, 500)
+
+    Raises:
+        Exception: Logs any errors during webhook processing
+        
+            - For non-push events: ({"message": "Not a push event"}, 200)
+            - For successful processing: ({"status": "success", "message": "Webhook processed"}, 200)
+            - For errors: ({"status": "error", "message": "<error details>"}, 500)
+
+    Raises:
+        Exception: Logs any errors during webhook processing
+
+    Example:
+        curl -X POST http://localhost:5000/webhook \
+            -H "Content-Type: application/json" \
+            -H "X-Github-Event: push" \
+            -d '{
+                "ref": "refs/heads/main",
+                "pusher": {
+                    "name": "username",
+                    "email": "user@example.com"
+                },
+                "commits": [{
+                    "added": ["code/new_file.py"],
+                    "modified": ["code/existing_file.py"],
+                    "removed": []
+                }]
+            }'
+    """
     logging.info("Received webhook request.")
     # Process only push events.
     if request.headers.get("X-Github-Event") != "push":
@@ -46,6 +91,9 @@ def webhook():
         # Clone the repository into BASE_DIR/REPO_NAME.
         repo_path = clone_repo(BASE_DIR, REPO_NAME, current_branch, REPO_URL)
         logging.info(f"Repository cloned to {repo_path}.")
+
+        generate_docs(logging)
+        logging.info("Docs generated.")
 
         changed_code_files = filterFiles(data)
 
@@ -84,11 +132,13 @@ def webhook():
                 f"Debug mode: Email content that would have been sent: {email_response.body}."
             )
 
+        logging.info("Webhook processed.")
         return jsonify({"status": "success", "message": "Webhook processed"}), 200
 
     except Exception as e:
+        logging.error(f"Error processing webhook: {str(e)}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=False)
+    app.run(port=5000, debug=True)

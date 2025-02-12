@@ -14,6 +14,42 @@ test_logger.addHandler(file_handler)
 
 
 def test_changed_code_files(changed_code_files, repo_path, email_response, logging):
+    """
+    Run tests for all modified Python files in the repository.
+
+    This function:
+    1. Looks for corresponding test files in the tests directory
+    2. Runs pytest on each test file
+    3. Logs detailed results to test_runs.log
+    4. Adds pass/fail status to email response
+    5. Handles missing test files and execution errors
+
+    Args:
+        changed_code_files (list[str]): List of Python files that were modified
+        repo_path (str): Path to the repository root directory
+        email_response (Response): Email response object to append results to
+        logging: Logger instance for recording operations
+
+    Returns:
+        None: Results are communicated via email_response and logging
+
+    Raises:
+        Exception: Catches and logs any errors during test execution
+
+    Example:
+        >>> from email_response import Response
+        >>> import logging
+        >>> logging.basicConfig(level=logging.INFO)
+        >>> email_response = Response(("John", "john@example.com"), "main")
+        >>> changed_files = ["code/calculator.py", "code/utils.py"]
+        >>> repo_path = "/path/to/repository"
+        >>> test_changed_code_files(changed_files, repo_path, email_response, logging)
+        # Output in test_runs.log:
+        # 2025-02-12 10:30:15 - INFO - Test results for code/calculator.py:
+        # 2025-02-12 10:30:15 - INFO - STDOUT: 2 passed in 0.12s
+        # 2025-02-12 10:30:16 - INFO - Test results for code/utils.py:
+        # 2025-02-12 10:30:16 - INFO - STDOUT: 3 passed in 0.15s
+    """
     for file_path in changed_code_files:
         base_filename = os.path.basename(file_path)
         test_filename = f"test_{base_filename}"
