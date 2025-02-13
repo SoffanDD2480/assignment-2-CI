@@ -122,6 +122,12 @@ pytest -x tests/
 
 ---
 
+## 📝 Property (SEMAT)
+
+The document answering the questions for "Property (SEMAT)" can be found [here](Property_SEMAT.md)
+
+---
+
 ## 🏗 Contributors
 
 **SoffanDD2480 Team**
