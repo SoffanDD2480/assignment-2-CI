@@ -65,7 +65,6 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
                     stderr=subprocess.PIPE,
                     text=True,
                 )
-
                 # Log the full test output to the log file
                 test_logger.info(f"Test results for {file_path}:")
                 test_logger.info(f"STDOUT:\n{test_result.stdout}")

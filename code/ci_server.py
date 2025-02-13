@@ -83,7 +83,6 @@ def webhook():
     logger.addHandler(mem_handler)
 
     overall_success = True  # Track overall success of the build.
-
     logging.info("Received webhook request.")
     # Process only push events.
     if request.headers.get("X-Github-Event") != "push":
@@ -103,11 +102,9 @@ def webhook():
         logging.info(
             f"Processing push event from {pusher_name} ({pusher_email}) on branch {current_branch}."
         )
-
         # Clone the repository into BASE_DIR/REPO_NAME.
         repo_path = clone_repo(BASE_DIR, REPO_NAME, current_branch, REPO_URL)
         logging.info(f"Repository cloned to {repo_path}.")
-
         generate_docs(logging)
         logging.info("Docs generated.")
 
@@ -292,4 +289,4 @@ def get_build_successes():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=False)

@@ -53,7 +53,7 @@ def check_syntax_and_formatting(local_code_file, file_path, email_response, logg
     email_response.append_content(f"Syntax check passed for {file_path}.")
     logging.info(f"Syntax check passed for {file_path}.")
 
-    formatting_checked = format_file(local_code_file, file_path, email_response, logging)
+    formatting_checked = format_file(file_path, email_response, local_code_file, logging)
 
     if not formatting_checked:
         return False, "Formatting failed."
@@ -106,7 +106,6 @@ def check_syntax(file_path, email_response, logging):
         result = subprocess.run(
             ["pylint", "--errors-only", file_path],capture_output=True,text=True
         )
-
         pylint_output = result.stdout.strip()
 
 
