@@ -20,7 +20,6 @@ REPO_NAME = "assignment-2-CI"
 REPO_URL = "https://github.com/SoffanDD2480/assignment-2-CI.git"
 LOG_FILE = "server.log"
 
-# Configure logging
 logging.basicConfig(
     filename=LOG_FILE,
     level=logging.INFO,
@@ -34,46 +33,47 @@ def webhook():
     Handle GitHub webhook POST requests for push events.
 
     This endpoint processes GitHub push events by:
-    1. Validating the webhook event type
-    2. Extracting push event data (branch, pusher info)
-    3. Cloning the repository
-    4. Checking changed files
-    5. Running syntax checks and tests
-    6. Sending email notifications with results
+
+    1. Validating the webhook event type.
+    2. Extracting push event data (branch, pusher info).
+    3. Cloning the repository.
+    4. Checking changed files.
+    5. Running syntax checks and tests.
+    6. Sending email notifications with results.
 
     Returns:
-        tuple: (JSON response, HTTP status code)
-            - For non-push events: ({"message": "Not a push event"}, 200)
-            - For successful processing: ({"status": "success", "message": "Webhook processed"}, 200)
-            - For errors: ({"status": "error", "message": "<error details>"}, 500)
+        tuple: A tuple containing the JSON response and the HTTP status code.
+
+        - **For non-push events**: `({"message": "Not a push event"}, 200)`
+        - **For successful processing**: `({"status": "success", "message": "Webhook processed"}, 200)`
+        - **For errors**: `({"status": "error", "message": "<error details>"}, 500)`
 
     Raises:
-        Exception: Logs any errors during webhook processing
-        
-            - For non-push events: ({"message": "Not a push event"}, 200)
-            - For successful processing: ({"status": "success", "message": "Webhook processed"}, 200)
-            - For errors: ({"status": "error", "message": "<error details>"}, 500)
-
-    Raises:
-        Exception: Logs any errors during webhook processing
+        Exception: Logs any errors during webhook processing.
 
     Example:
-        curl -X POST http://localhost:5000/webhook \
-            -H "Content-Type: application/json" \
-            -H "X-Github-Event: push" \
-            -d '{
-                "ref": "refs/heads/main",
-                "pusher": {
-                    "name": "username",
-                    "email": "user@example.com"
-                },
-                "commits": [{
-                    "added": ["code/new_file.py"],
-                    "modified": ["code/existing_file.py"],
-                    "removed": []
-                }]
-            }'
+        To trigger the webhook with a push event, use:
+
+        .. code-block:: bash
+
+            curl -X POST http://localhost:5000/webhook \
+                -H "Content-Type: application/json" \
+                -H "X-Github-Event: push" \
+                -d '{
+                    "ref": "refs/heads/main",
+                    "pusher": {
+                        "name": "username",
+                        "email": "user@example.com"
+                    },
+                    "commits": [{
+                        "added": ["code/new_file.py"],
+                        "modified": ["code/existing_file.py"],
+                        "removed": []
+                    }]
+                }'
+
     """
+
     log_capture_string = io.StringIO()
     mem_handler = logging.StreamHandler(log_capture_string)
     mem_handler.setLevel(logging.INFO)
