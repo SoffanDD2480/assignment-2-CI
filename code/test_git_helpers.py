@@ -37,7 +37,8 @@ class TestGitHelpers(unittest.TestCase):
         Tests a fail of filtering of commited files, by providing wrong type of data
         """
 
-        self.assertRaises(Exception, filter_files, 1)
+        assert 1 == 2
+        # self.assertRaises(Exception, filter_files, 1)
 
     def test_filter_file_successful(self):
         """
