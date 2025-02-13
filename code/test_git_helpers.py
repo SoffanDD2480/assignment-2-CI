@@ -20,6 +20,8 @@ class TestGitHelpers(unittest.TestCase):
         Tests if git clone fails with wrong repo
         """
 
+        self.assertRaises(Exception, clone_repo, self.test_dir, self.repo_name, self.branch, "https://github.com/SoffanDD2480/wrong")
+
     def test_git_helpers_successful(self):
         """
         Tests if git clone works with the right inputs
