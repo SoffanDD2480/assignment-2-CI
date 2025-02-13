@@ -53,7 +53,7 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
     for file_path in changed_code_files:
         base_filename = os.path.basename(file_path)
         test_filename = f"test_{base_filename}"
-        local_test_file = os.path.join(repo_path, "tests", test_filename)
+        local_test_file = os.path.join(repo_path, "code", test_filename)
 
         if os.path.exists(local_test_file):
             try:
