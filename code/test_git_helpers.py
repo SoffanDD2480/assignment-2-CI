@@ -44,3 +44,13 @@ class TestGitHelpers(unittest.TestCase):
         Tests if git clone works with the right inputs
         """
 
+        data = {
+            "commits": [{
+                "added": ["code/test_git_helpers.py"],
+                "modified": ["code/build_db.py", "README.md"]
+            }]
+        }
+
+        res = filter_files(data)
+
+        assert res == ["code/test_git_helpers.py", "code/build_db.py"], "Filter function didn't filter the rigth files"
