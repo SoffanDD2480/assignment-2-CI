@@ -47,9 +47,8 @@ class Response:
         )
         self.SMTP_SERVER = "smtp.gmail.com"
         self.SMTP_PORT = 587  # TLS SMTP port
-        self.body = [
-            f"Greetings {self.NAME_RECEIVER}\n\nHere are the results from your latest push:"
-        ]
+        self.intro = f"Greetings {self.NAME_RECEIVER}\n\nHere are the results from your latest push:"
+        self.body = []
         self.passed_syntax = True
         self.passed_tests = True
 
@@ -80,7 +79,7 @@ class Response:
         self.response["From"] = self.EMAIL_SENDER
         self.response["To"] = self.EMAIL_RECEIVER
         self.response["Subject"] = self.EMAIL_SUBJECT
-        body = ""
+        body = self.intro
         if self.passed_syntax:
             body += "SYNTAX CHECK PASSED - "
         else:
