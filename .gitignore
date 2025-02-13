@@ -68,9 +68,6 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
-docs/_build/
-
 # PyBuilder
 .pybuilder/
 target/
@@ -171,3 +168,9 @@ cython_debug/
 .pypirc
 
 .sample_dir
+
+# auto generated docs
+!docs/build
+docs/source
+!docs/source/index.rst
+!docs/source/conf.py

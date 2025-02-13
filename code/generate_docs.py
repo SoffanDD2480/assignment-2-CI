@@ -36,7 +36,7 @@ def generate_docs(logging):
     os.chdir(docs_dir)
 
     logging.info("Generating .rst files from Python modules...")
-    sphinx_apidoc_cmd = ["sphinx-apidoc", "-o", ".", code_dir]
+    sphinx_apidoc_cmd = ["sphinx-apidoc", "--force", "-o", "./source", code_dir]
     try:
         process = subprocess.run(
             sphinx_apidoc_cmd, check=True, capture_output=True, text=True

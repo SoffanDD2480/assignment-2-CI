@@ -8,21 +8,25 @@ db = SQLAlchemy()
 class Build(db.Model):
     """
     Represents a build in the database.
-
-    Attributes:
-        id (int): Primary key, auto-incrementing integer.
-        commit_sha (str): Commit SHA for the build (max length 100).
-        build_date (datetime): Date and time of the build, defaults to now.
-        logs (str): Build logs (text).
-        status (str): Build status (max length 20).
     """
 
     __tablename__ = "builds"
-    id = db.Column(db.Integer, primary_key=True)
-    commit_sha = db.Column(db.String(100), nullable=False)
-    build_date = db.Column(db.DateTime, default=datetime.now)
-    logs = db.Column(db.Text, nullable=False)
-    status = db.Column(db.String(20), nullable=False)
+
+    id = db.Column(
+        db.Integer, primary_key=True, doc="Primary key, auto-incrementing integer."
+    )
+    commit_sha = db.Column(
+        db.String(100), nullable=False, doc="Commit SHA for the build (max length 100)."
+    )
+    build_date = db.Column(
+        db.DateTime,
+        default=lambda: datetime.utcnow(),
+        doc="Date and time of the build.",
+    )
+    logs = db.Column(db.Text, nullable=False, doc="Build logs (text).")
+    status = db.Column(
+        db.String(20), nullable=False, doc="Build status (max length 20)."
+    )
 
     def __init__(self, commit_sha, logs, status):
         """
