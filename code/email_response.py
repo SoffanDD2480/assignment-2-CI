@@ -48,8 +48,10 @@ class Response:
         self.SMTP_SERVER = "smtp.gmail.com"
         self.SMTP_PORT = 587  # TLS SMTP port
         self.body = [
-            f"Greetings {self.NAME_RECEIVER}\n\nHere are the results from your latest push "
+            f"Greetings {self.NAME_RECEIVER}\n\nHere are the results from your latest push:"
         ]
+        self.passed_syntax = True
+        self.passed_tests = True
 
     def append_content(self, info):
         """
@@ -79,8 +81,22 @@ class Response:
         self.response["To"] = self.EMAIL_RECEIVER
         self.response["Subject"] = self.EMAIL_SUBJECT
         body = ""
+        if self.passed_syntax:
+            body += "SYNTAX CHECK PASSED - "
+        else:
+            body += "SYNTAX CHECK FAILED - "
+        if self.passed_tests:
+            body += "ALL TESTS PASSED\n"
+        else:
+            body += "FAILED TESTS PRESENT\n"
+        body += "See details below:"
         for info in self.body:
             body += "\n\n" + str(info)
+        if not self.passed_syntax and self.passed_tests:
+            body += ("\n\nFor further details, please consult server log.\n"
+                     "Please fix the above issues as soon as possible")
+        else:
+            body += "\n\nSyntax Check + All tests passed! Code is good to go"
         body += "\n\nBest Regards,\nTeam Soffan"
         self.response.attach(MIMEText(body, "plain"))
 
