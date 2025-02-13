@@ -83,7 +83,7 @@ def webhook():
     logger.addHandler(mem_handler)
 
     overall_success = True  # Track overall success of the build.
-
+    print("Received webhook request.")
     logging.info("Received webhook request.")
     # Process only push events.
     if request.headers.get("X-Github-Event") != "push":
@@ -103,23 +103,30 @@ def webhook():
         logging.info(
             f"Processing push event from {pusher_name} ({pusher_email}) on branch {current_branch}."
         )
+        print(f"Processing push event from {pusher_name} ({pusher_email}) on branch {current_branch}.")
 
         # Clone the repository into BASE_DIR/REPO_NAME.
         repo_path = clone_repo(BASE_DIR, REPO_NAME, current_branch, REPO_URL)
         logging.info(f"Repository cloned to {repo_path}.")
-
-        generate_docs(logging)
+        print(f"Repository cloned to {repo_path}.")
+        try:
+            generate_docs(logging)
+        except Exception as e:
+            print(f"Error: {e}")
         logging.info("Docs generated.")
 
         changed_code_files = filterFiles(data)
 
         if not changed_code_files:
             logging.info("No Python code changes detected.")
+            print("No Python code changes detected.")
             email_response.append_content("No Python code changes detected.")
         else:
+            print("test 1")
             for file_path in changed_code_files:
                 local_code_file = os.path.join(repo_path, file_path)
                 email_response.append_content(f"Processing changed file: {file_path}")
+                print(f"Processing changed file: {file_path}")
                 logging.info(f"Processing changed file: {file_path}")
 
                 # Check syntax and auto-format
@@ -127,6 +134,7 @@ def webhook():
                     local_code_file, file_path, email_response, logging
                 ):
                     # If syntax fails, skip tests for this file.
+                    print("test 4")
                     overall_success = False
                     continue
 
@@ -134,12 +142,16 @@ def webhook():
                 test_changed_code_files(
                     changed_code_files, repo_path, email_response, logging
                 )
+                print("test 5")
 
         logging.info(f"Webhook processed for branch: {current_branch}" + "\n")
+        print(f"Webhook processed for branch: {current_branch}" + "\n")
         # Build and send (or print) the email response.
         email_response.make_response()
+        print("email made")
         if not app.debug:
             email_response.send_response()
+            print("email sent")
             logging.info(f"Sent email contents: {email_response.body}")
         else:
             print("Debug mode: Email would have been sent with content:")
@@ -158,10 +170,12 @@ def webhook():
         Build.add_build(commit_sha, build_logs, build_status)
 
         logging.info("Webhook processed.")
+        print("Webhook processed.")
         return jsonify({"status": "success", "message": "Webhook processed"}), 200
 
     except Exception as e:
         logging.error(f"Error processing webhook: {str(e)}")
+        print(f"Error processing webhook: {str(e)}")
         return jsonify({"status": "error", "message": str(e)}), 500
 
 

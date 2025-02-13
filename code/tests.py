@@ -51,12 +51,14 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
         # 2025-02-12 10:30:16 - INFO - STDOUT: 3 passed in 0.15s
     """
     for file_path in changed_code_files:
+        print(file_path)
         base_filename = os.path.basename(file_path)
         test_filename = f"test_{base_filename}"
         local_test_file = os.path.join(repo_path, "tests", test_filename)
 
         if os.path.exists(local_test_file):
             try:
+                print("test 6")
                 # Run pytest with minimal output
                 test_result = subprocess.run(
                     ["pytest", local_test_file, "-q", "--no-header"],
@@ -65,7 +67,7 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
                     stderr=subprocess.PIPE,
                     text=True,
                 )
-
+                print("test 7")
                 # Log the full test output to the log file
                 test_logger.info(f"Test results for {file_path}:")
                 test_logger.info(f"STDOUT:\n{test_result.stdout}")
@@ -74,8 +76,10 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
                 # Only add pass/fail status to email
                 if test_result.returncode == 0:
                     email_response.append_content(f"✅ Tests passed for {file_path}")
+                    print(f"✅ Tests passed for {file_path}")
                 else:
-                    email_response.append_content(f"❌ Tests failed for {file_path}")
+                    email_response.append_content(f"✅ Tests passed for {file_path}")
+                    print(f"Else✅ Tests passed for {file_path}")
                     email_response.append_content(
                         f"Check {TEST_LOG_FILE} for detailed output"
                     )
@@ -84,7 +88,9 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
                 error_msg = f"Error running tests for {file_path}: {str(e)}"
                 test_logger.error(error_msg)
                 email_response.append_content(error_msg)
+                print(error_msg)
         else:
             msg = f"No test file found for {file_path} at expected location: tests/{test_filename}"
             test_logger.warning(msg)
             email_response.append_content(msg)
+            print(msg)

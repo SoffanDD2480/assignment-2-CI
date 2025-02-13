@@ -106,29 +106,33 @@ def check_syntax(file_path, email_response, logging):
         result = subprocess.run(
             ["pylint", "--errors-only", file_path],capture_output=True,text=True
         )
-
+        print("test 2")
         pylint_output = result.stdout.strip()
 
 
         if result.returncode != 0:
             error_message = f"Syntax errors detected in {file_path}:\n{pylint_output}"
+            print(f"Syntax errors detected in {file_path}:\n{pylint_output}")
             logging.error(error_message)
             email_response.append_content(error_message)
             return False, pylint_output  
 
         success_message = f"Syntax check passed for {file_path}."
+        print(f"Syntax check passed for {file_path}.")
         logging.info(success_message)
         email_response.append_content(success_message)
         return True, ""
 
     except FileNotFoundError:
         error_message = f"Error: pylint not found for {file_path}."
+        print(f"Error: pylint not found for {file_path}.")
         logging.error(error_message)
         email_response.append_content(error_message)
         return False, error_message
     
     except Exception as e:
         logging.error(f"Unexpected error during syntax check: {e}")
+        print(f"Error: {e}")
         return False, str(e)
 
 
@@ -178,6 +182,7 @@ def format_file(file_path, email_response: Response, local_code_file, logging):
         False
     """
     try:
+        print("test format")
         result = subprocess.run(
             ["black", local_code_file],
             check=True,
@@ -190,6 +195,7 @@ def format_file(file_path, email_response: Response, local_code_file, logging):
         return result
     
     except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
         error_message = e.stderr.strip() if e.stderr else str(e)
         email_response.append_content(
             f"Error formatting {file_path} with Black: {error_message}"
