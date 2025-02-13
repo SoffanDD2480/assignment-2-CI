@@ -30,7 +30,7 @@ class TestGenerateDocs(unittest.TestCase):
 
         generate_docs(logging)
 
-        assert False
+        assert (not os.path.exists(build_dir)), "Build files exist, when they shouldn't"
 
     def test_generate_docs_successful(self):
         """
