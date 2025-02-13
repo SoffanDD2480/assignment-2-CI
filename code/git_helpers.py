@@ -36,7 +36,7 @@ def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str
     return repo_path
 
 
-def filterFiles(data):
+def filter_files(data):
     """
     Filter changed files from a GitHub webhook push event payload.
 
@@ -53,7 +53,7 @@ def filterFiles(data):
         ...         "modified": ["code/main.py"]
         ...     }]
         ... }
-        >>> filterFiles(data)
+        >>> filter_files(data)
         ['code/test.py', 'code/main.py']
     """
     # Collect changed files from all commits in the push event.

@@ -1,6 +1,4 @@
 import os
-import shutil
-import logging
 import unittest
 
 from syntax_check import *
