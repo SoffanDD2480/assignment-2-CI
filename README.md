@@ -35,6 +35,7 @@ README.md
 git clone https://github.com/SoffanDD2480/assignment-2-CI.git
 cd assignment-2-CI
 ```
+
 ### 2️⃣ Python and pip version requirement
 
 Use the following versions of Python and Pip:
