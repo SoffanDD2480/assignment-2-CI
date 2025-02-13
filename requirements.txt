@@ -1,5 +1,7 @@
 GitPython
 pytest
 sphinx
+sphinxcontrib-napoleon
 flake8
 requests
+flask_sqlalchemy
