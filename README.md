@@ -27,6 +27,13 @@ README.md
 
 ---
 
+## 📄 Documentation
+
+[//]: # (TODO: Add a build of the docs to the main repo? Or instruction on how to build)
+Docs can be found in the [docs](docs) directory.
+
+---
+
 ## 🚀 Installation
 
 ### 1️⃣ Clone the repository
