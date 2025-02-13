@@ -85,13 +85,13 @@ pytest tests/
 To run a specific test file:
 
 ```bash
-pytest tests/test_file.py
+pytest tests/test_file_right.py
 ```
 
 To run a specific test function:
 
 ```bash
-pytest tests/test_file.py::test_specific_function
+pytest tests/test_file_right.py::test_specific_function
 ```
 
 If you want to stop execution after the first failed test:
