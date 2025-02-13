@@ -91,7 +91,7 @@ class Response:
         body += "See details below:"
         for info in self.body:
             body += "\n\n" + str(info)
-        if not self.passed_syntax and self.passed_tests:
+        if not (self.passed_syntax and self.passed_tests):
             body += ("\n\nFor further details, please consult server log.\n"
                      "Please fix the above issues as soon as possible")
         else:
