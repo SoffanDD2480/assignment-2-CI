@@ -36,7 +36,19 @@ git clone https://github.com/SoffanDD2480/assignment-2-CI.git
 cd assignment-2-CI
 ```
 
-### 2️⃣ Install dependencies
+### 2️⃣ Python and pip version requirement
+
+Use the following versions of Python and Pip:
+* Python: 3.11.8 >=
+* Pip: 23.3 >=
+To check your installed versions, run:
+
+```bash
+python --version
+pip --version
+```
+
+### 3️⃣ Install dependencies
 
 Run the following command to install the required dependencies:
 

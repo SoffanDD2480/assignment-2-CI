@@ -1,7 +1,8 @@
-GitPython
-pytest
-sphinx
-sphinxcontrib-napoleon
-flake8
-requests
-flask_sqlalchemy
+GitPython == 3.1.44
+pytest == 8.3.4
+sphinx == 8.1.3
+Flask == 3.1.0
+sphinxcontrib-napoleon == 0.7
+requests == 2.32.3
+flask_sqlalchemy == 3.1.1
+
