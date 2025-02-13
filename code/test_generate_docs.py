@@ -1,6 +1,5 @@
 import os
 import shutil
-import subprocess
 import logging
 import unittest
 
@@ -16,16 +15,22 @@ class TestGenerateDocs(unittest.TestCase):
 
     def test_generate_docs_fail(self):
         """
-        Tests generating files in the wrong directory
+        Tests generating files in the wrong directory.
 
-        :return: None
+        Deletes the build dir to properly test creation.
+
+        Should result in no build directory created, since it is created in the wrong directory.
         """
+
+        # Establishes base dirs
         code_dir = os.path.abspath("code")
         build_dir = os.path.abspath("docs/build")
 
+        # Remove build dir if it exists, to properly test creation fail
         if os.path.exists(build_dir):
             shutil.rmtree(build_dir)
 
+        # Change to the wrong dir, which should result in failed run of generate_docs()
         os.chdir(code_dir)
 
         generate_docs(logging)
@@ -34,12 +39,17 @@ class TestGenerateDocs(unittest.TestCase):
 
     def test_generate_docs_successful(self):
         """
-        Tests if docs are generated in docs/build
+        Tests if docs are generated in docs/build.
 
-        :return: None
+        Deletes the build dir to properly test creation fail.
+
+        Should result in a build directory created, with the docs.
         """
+
+        # Establishes base dirs
         build_dir = os.path.abspath("docs/build")
 
+        # Remove build dir if it exists, to properly test creation of the build directory
         if os.path.exists(build_dir):
             shutil.rmtree(build_dir)
 
