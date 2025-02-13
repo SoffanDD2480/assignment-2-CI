@@ -132,10 +132,23 @@ The document answering the questions for "Property (SEMAT)" can be found [here](
 
 **SoffanDD2480 Team**
 
-- Albin:
-- Dima:
-- Elias:
-- Riccardo:
+- Albin (GH: albinwwoxnerud):
+  - Implement autogen of Docs, Github Pages
+  - Implement tests for Building DB
+  - Implement DB for saving old builds
+  - Implement Webhooks for Server
+  - Implement Syntax checking and formating
+- Dmitry (GH: Dudjfy): 
+  - Implement tests for Git helpers, Syntax Checker, Generating docs
+  - Implement SEMAT
+- Elias (GH: eliasfrode):
+  - Implement Server infrastructure
+  - Implement Email notifications
+- Riccardo (GH: riccacocco):
+  - Implement Email notifications
+  - Implement README
+  - Implement Server infrastructure
+  - Implement Syntax checking and formating
 
 ---
 
