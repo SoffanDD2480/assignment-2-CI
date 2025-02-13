@@ -6,7 +6,7 @@ import io
 from flask import Flask, request, jsonify
 from syntax_check import check_syntax_and_formatting
 from email_response import Response
-from git_helpers import clone_repo, filterFiles
+from git_helpers import clone_repo, filter_files
 from tests import test_changed_code_files
 from generate_docs import generate_docs
 from build_db import db, Build, init_db
@@ -108,7 +108,7 @@ def webhook():
         generate_docs(logging)
         logging.info("Docs generated.")
 
-        changed_code_files = filterFiles(data)
+        changed_code_files = filter_files(data)
 
         if not changed_code_files:
             logging.info("No Python code changes detected.")
