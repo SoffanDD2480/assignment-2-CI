@@ -53,7 +53,7 @@ def check_syntax_and_formatting(local_code_file, file_path, email_response, logg
     email_response.append_content(f"Syntax check passed for {file_path}.")
     logging.info(f"Syntax check passed for {file_path}.")
 
-    formatting_checked = format_file(local_code_file, file_path, email_response, logging)
+    formatting_checked = format_file(file_path, email_response, local_code_file, logging)
 
     if not formatting_checked:
         return False, "Formatting failed."
@@ -192,6 +192,7 @@ def format_file(file_path, email_response: Response, local_code_file, logging):
         )
         email_response.append_content(f"Formatted {file_path} with Black.")
         logging.info(f"Formatted {file_path} with Black.")
+        print(f"Formatted {file_path} with Black.")
         return result
     
     except subprocess.CalledProcessError as e:
