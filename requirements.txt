@@ -1,0 +1,5 @@
+GitPython
+pytest
+sphinx
+flake8
+requests
