@@ -34,6 +34,7 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 
+<span class="c1"># test</span>
 
 <div class="viewcode-block" id="generate_docs">
 <a class="viewcode-back" href="../generate_docs.html#generate_docs.generate_docs">[docs]</a>
@@ -71,7 +72,7 @@
     <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">docs_dir</span><span class="p">)</span>
 
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating .rst files from Python modules...&quot;</span><span class="p">)</span>
-    <span class="n">sphinx_apidoc_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx-apidoc&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;./source&quot;</span><span class="p">,</span> <span class="n">code_dir</span><span class="p">]</span>
+    <span class="n">sphinx_apidoc_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx-apidoc&quot;</span><span class="p">,</span> <span class="s2">&quot;--force&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;./source&quot;</span><span class="p">,</span> <span class="n">code_dir</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
             <span class="n">sphinx_apidoc_cmd</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
