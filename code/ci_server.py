@@ -1,5 +1,6 @@
 import os
 import logging
+import re
 import io
 
 from flask import Flask, request, jsonify
@@ -91,7 +92,8 @@ def webhook():
 
     try:
         data = request.get_json()
-        current_branch = data.get("ref", "").split("/")[-1]
+        current_branch = data.get("ref", "")
+        current_branch = re.search(r"refs/heads/(.+)", current_branch).group(1)
         pusher_info = data.get("pusher", {})
         commit_sha = data.get("after", "unknown")
         pusher_name = pusher_info.get("name")
