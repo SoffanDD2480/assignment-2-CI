@@ -78,6 +78,7 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
                     email_response.append_content(
                         f"Check {TEST_LOG_FILE} for detailed output"
                     )
+                    email_response.passed_tests = False
 
             except Exception as e:
                 error_msg = f"Error running tests for {file_path}: {str(e)}"

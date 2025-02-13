@@ -124,6 +124,7 @@ def webhook():
                     local_code_file, file_path, email_response, logging
                 ):
                     # If syntax fails, skip tests for this file.
+                    email_response.passed_syntax = False
                     overall_success = False
                     continue
 
