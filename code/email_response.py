@@ -80,7 +80,6 @@ class Response:
         self.response["To"] = self.EMAIL_RECEIVER
         self.response["Subject"] = self.EMAIL_SUBJECT
         body = self.intro
-        print(body)
         if self.passed_syntax:
             body += "SYNTAX CHECK PASSED --- "
         else:
@@ -89,7 +88,6 @@ class Response:
             body += "ALL TESTS PASSED\n"
         else:
             body += "SOME TESTS FAILED\n"
-        print(body)
         body += "See details below:"
         for info in self.body:
             body += "\n\n" + str(info)
@@ -99,7 +97,6 @@ class Response:
         else:
             body += "\n\nSyntax Check + All tests passed! Code is good to go"
         body += "\n\nBest Regards,\nTeam Soffan"
-        print(body)
         self.response.attach(MIMEText(body, "plain"))
 
     def send_response(self):
@@ -129,4 +126,4 @@ class Response:
         except Exception as e:
             print(f"Error sending email: {e}")
             raise
-# Test final -7
+# Test final -8

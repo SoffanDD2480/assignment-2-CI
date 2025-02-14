@@ -47,7 +47,7 @@ class TestGenerateDocs(unittest.TestCase):
         """
 
         # Establishes base dirs
-        build_dir = os.path.abspath("docs/build")
+        build_dir = os.path.abspath("../docs/build")
 
         # Remove build dir if it exists, to properly test creation of the build directory
         if os.path.exists(build_dir):
