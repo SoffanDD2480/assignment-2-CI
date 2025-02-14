@@ -71,4 +71,5 @@ def filter_files(data):
         for file_path in changed_files
         if file_path.startswith("code/") and file_path.endswith(".py")
     ]
+    print(changed_code_files)
     return changed_code_files

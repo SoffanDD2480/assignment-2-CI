@@ -22,8 +22,9 @@ def generate_docs(logging):
         subprocess.CalledProcessError: If sphinx-apidoc or make html commands fail
         OSError: If directory operations fail
     """
-    docs_dir = os.path.abspath("docs")
-    code_dir = os.path.abspath("code")
+    base_dir = os.path.abspath(os.getcwd())  # Get the absolute base directory
+    docs_dir = os.path.join(base_dir, "docs")
+    code_dir = os.path.join(base_dir, "code")
 
     if not os.path.exists(docs_dir):
         logging.error("Error: docs/ directory not found!")

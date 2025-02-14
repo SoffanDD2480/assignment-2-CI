@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>syntax_check module &#8212; CI/CD 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
     <script src="_static/documentation_options.js?v=2709fde1"></script>
@@ -14,7 +14,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_file module" href="test_file.html" />
+    <link rel="next" title="test_build_db module" href="test_build_db.html" />
     <link rel="prev" title="git_helpers module" href="git_helpers.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -67,7 +67,7 @@ If the file passes the syntax check, a success message is logged</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">check_syntax</span><span class="p">(</span><span class="s2">&quot;path/to/valid.py&quot;</span><span class="p">,</span> <span class="n">logging</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">is_valid</span><span class="p">)</span>
@@ -109,8 +109,8 @@ Check and format Python source code files.</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">email_response</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">email_response</span> <span class="kn">import</span> <span class="n">Response</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">email_response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;john@example.com&quot;</span><span class="p">),</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">check_syntax_and_formatting</span><span class="p">(</span>
@@ -148,8 +148,8 @@ None: If the formatting fails.</p>
 <dd class="field-odd"><p><p>subprocess.CompletedProcess</p>
 <dl>
 <dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Setup logging and email response</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">email_response</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">email_response</span> <span class="kn">import</span> <span class="n">Response</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">email_response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;john@example.com&quot;</span><span class="p">),</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt;</span>
@@ -215,10 +215,16 @@ None: If the formatting fails.</p>
 <li class="toctree-l2"><a class="reference internal" href="build_db.html">build_db module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ci_server.html">ci_server module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="email_response.html">email_response module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_right.html">file_right module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_wrong.html">file_wrong module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generate_docs.html">generate_docs module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git_helpers.html">git_helpers module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">syntax_check module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test_file.html">test_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_build_db.html">test_build_db module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_email_response.html">test_email_response module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_generate_docs.html">test_generate_docs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_git_helpers.html">test_git_helpers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_syntax_check.html">test_syntax_check module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html">tests module</a></li>
 </ul>
 </li>
@@ -230,7 +236,7 @@ None: If the formatting fails.</p>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">code</a><ul>
       <li>Previous: <a href="git_helpers.html" title="previous chapter">git_helpers module</a></li>
-      <li>Next: <a href="test_file.html" title="next chapter">test_file module</a></li>
+      <li>Next: <a href="test_build_db.html" title="next chapter">test_build_db module</a></li>
   </ul></li>
   </ul></li>
 </ul>

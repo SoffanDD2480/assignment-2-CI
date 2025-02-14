@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Create an SQLAlchemy instance that will be used by the Flask app.
 db = SQLAlchemy()
@@ -18,11 +18,13 @@ class Build(db.Model):
     commit_sha = db.Column(
         db.String(100), nullable=False, doc="Commit SHA for the build (max length 100)."
     )
+
     build_date = db.Column(
         db.DateTime,
-        default=lambda: datetime.utcnow(),
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
         doc="Date and time of the build.",
     )
+
     logs = db.Column(db.Text, nullable=False, doc="Build logs (text).")
     status = db.Column(
         db.String(20), nullable=False, doc="Build status (max length 20)."

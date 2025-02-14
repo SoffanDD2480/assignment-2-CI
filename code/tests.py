@@ -51,9 +51,11 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
         # 2025-02-12 10:30:16 - INFO - STDOUT: 3 passed in 0.15s
     """
     for file_path in changed_code_files:
+        if "tests" in file_path or "ci_server" in file_path:
+            continue
         base_filename = os.path.basename(file_path)
         test_filename = f"test_{base_filename}"
-        local_test_file = os.path.join(repo_path, "tests", test_filename)
+        local_test_file = os.path.join(repo_path, "code", test_filename)
 
         if os.path.exists(local_test_file):
             try:
@@ -88,3 +90,5 @@ def test_changed_code_files(changed_code_files, repo_path, email_response, loggi
             msg = f"No test file found for {file_path} at expected location: tests/{test_filename}"
             test_logger.warning(msg)
             email_response.append_content(msg)
+
+#test

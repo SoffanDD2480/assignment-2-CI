@@ -29,7 +29,7 @@ def test_initialization(response):
     assert response.EMAIL_SENDER == "soffan.dd2480@gmail.com"
     assert response.SMTP_SERVER == "smtp.gmail.com"
     assert response.SMTP_PORT == 587
-    assert "Greetings Marco Carta" in response.body[0]
+    assert "Greetings Marco Carta" in response.intro
 
 def test_append_content(response):
     """Test if content is appended correctly to the email body.

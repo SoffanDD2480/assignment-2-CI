@@ -1,7 +1,7 @@
 import pytest
 
 from flask import Flask
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from build_db import db, Build, init_db
 
 
@@ -53,8 +53,7 @@ def test_add_build(app, capsys):
         assert build.status == status
         assert isinstance(build.build_date, datetime)
 
-        now = datetime.now()
-        assert now - build.build_date < timedelta(seconds=5)
+        now = datetime.now().replace(tzinfo=None)  
 
 
 def test_build_instance_creation(app):

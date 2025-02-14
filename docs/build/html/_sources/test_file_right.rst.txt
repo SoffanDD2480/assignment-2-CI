@@ -1,0 +1,7 @@
+test\_file\_right module
+========================
+
+.. automodule:: test_file_right
+   :members:
+   :undoc-members:
+   :show-inheritance:
