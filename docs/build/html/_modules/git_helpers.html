@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>git_helpers &#8212; CI/CD 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=2709fde1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for git_helpers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">git</span>
+
+
+<div class="viewcode-block" id="clone_repo">
+<a class="viewcode-back" href="../git_helpers.html#git_helpers.clone_repo">[docs]</a>
+<span class="k">def</span> <span class="nf">clone_repo</span><span class="p">(</span><span class="n">base_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repo_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repo_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clone a Git repository to a local directory.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        base_dir (str): Base directory where the repository will be cloned</span>
+<span class="sd">        repo_name (str): Name of the directory that will contain the cloned repository</span>
+<span class="sd">        branch (str): Branch name to clone</span>
+<span class="sd">        repo_url (str): URL of the Git repository to clone</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Absolute path to the cloned repository directory</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        git.GitCommandError: If the clone operation fails</span>
+<span class="sd">        OSError: If there are file system related errors during directory cleanup</span>
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; repo_path = clone_repo(</span>
+<span class="sd">        ...     base_dir=&quot;./.sample_dir/&quot;,</span>
+<span class="sd">        ...     repo_name=&quot;assignment-2-CI&quot;,</span>
+<span class="sd">        ...     branch=&quot;main&quot;,</span>
+<span class="sd">        ...     repo_url=&quot;https://github.com/user/repo.git&quot;</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; print(repo_path)</span>
+<span class="sd">        &#39;./.sample_dir/assignment-2-CI&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">repo_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="n">repo_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">repo_path</span><span class="p">):</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">repo_path</span><span class="p">)</span>
+    <span class="n">git</span><span class="o">.</span><span class="n">Repo</span><span class="o">.</span><span class="n">clone_from</span><span class="p">(</span><span class="n">repo_url</span><span class="p">,</span> <span class="n">repo_path</span><span class="p">,</span> <span class="n">branch</span><span class="o">=</span><span class="n">branch</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">repo_path</span></div>
+
+
+
+<div class="viewcode-block" id="filter_files">
+<a class="viewcode-back" href="../git_helpers.html#git_helpers.filter_files">[docs]</a>
+<span class="k">def</span> <span class="nf">filter_files</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filter changed files from a GitHub webhook push event payload.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (dict): GitHub webhook push event payload containing commit information</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list: List of Python file paths that were added or modified in the &#39;code/&#39; directory</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; data = {</span>
+<span class="sd">        ...     &quot;commits&quot;: [{</span>
+<span class="sd">        ...         &quot;added&quot;: [&quot;code/test.py&quot;],</span>
+<span class="sd">        ...         &quot;modified&quot;: [&quot;code/main.py&quot;]</span>
+<span class="sd">        ...     }]</span>
+<span class="sd">        ... }</span>
+<span class="sd">        &gt;&gt;&gt; filter_files(data)</span>
+<span class="sd">        [&#39;code/test.py&#39;, &#39;code/main.py&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Collect changed files from all commits in the push event.</span>
+    <span class="n">changed_files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">commit</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;commits&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">commit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;added&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">changed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">commit</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;modified&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">changed_files</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="c1"># We skip removed files.</span>
+
+    <span class="c1"># Filter: only include Python files within the &#39;code/&#39; directory.</span>
+    <span class="n">changed_code_files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">file_path</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">changed_files</span>
+        <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;code/&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">changed_code_files</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">changed_code_files</span></div>
+
+
+<span class="c1"># test final -10</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">CI/CD</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">code</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Albin W Woxnerud, Riccardo, Elias, Dima.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
