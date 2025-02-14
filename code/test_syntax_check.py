@@ -23,7 +23,7 @@ class TestSyntaxCheck(unittest.TestCase):
 
         result, _ = check_syntax(self.file_wrong, self.response, logging)
 
-        assert  result, "The file doesn't pass the syntax check, when in should pass"
+        assert not result, "The file doesn't pass the syntax check, when in should pass"
 
 
     def test_check_syntax_successful(self):
