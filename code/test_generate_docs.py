@@ -23,7 +23,7 @@ class TestGenerateDocs(unittest.TestCase):
         """
 
         # Establishes base dirs
-        code_dir = os.path.abspath("code")
+        code_dir = os.path.abspath("../code")
         build_dir = os.path.abspath("docs/build")
 
         # Remove build dir if it exists, to properly test creation fail

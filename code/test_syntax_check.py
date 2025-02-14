@@ -8,8 +8,9 @@ class TestSyntaxCheck(unittest.TestCase):
     def __init__(self, methodName='runTest'):
         super().__init__(methodName)
         self.base_dir = os.path.abspath(".")
-        self.file_right = os.path.join(self.base_dir, "code", "file_right.py")
-        self.file_wrong = os.path.join(self.base_dir, "code", "file_wrong.py")
+        print(self.base_dir)
+        self.file_right = os.path.join(self.base_dir, "../code", "file_right.py")
+        self.file_wrong = os.path.join(self.base_dir, "../code", "file_wrong.py")
         self.response = Response(("Test Testsson", "tt@test.test"), "test")
 
     def setUp(self):

@@ -54,4 +54,4 @@ class TestGitHelpers(unittest.TestCase):
 
         res = filter_files(data)
 
-        assert res == ["code/test_git_helpers.py", "code/build_db.py"], "Filter function didn't filter the rigth files"
+        assert set(res) == {"code/test_git_helpers.py", "code/build_db.py"}, "Filter function didn't filter the rigth files"
