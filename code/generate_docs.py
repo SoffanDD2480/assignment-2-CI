@@ -74,4 +74,4 @@ def generate_docs(logging):
             logging.error("Make html errors:\n%s", e.stderr)
         return
 
-#test 1
+#test 2
