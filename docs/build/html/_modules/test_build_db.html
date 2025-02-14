@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test_build_db &#8212; CI/CD 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
     <script src="../_static/documentation_options.js?v=2709fde1"></script>
@@ -31,17 +31,17 @@
           <div class="body" role="main">
             
   <h1>Source code for test_build_db</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span></span><span class="kn">import</span> <span class="nn">pytest</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">build_db</span><span class="w"> </span><span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">Build</span><span class="p">,</span> <span class="n">init_db</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">build_db</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">Build</span><span class="p">,</span> <span class="n">init_db</span>
 
 
 <div class="viewcode-block" id="app">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.app">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">app</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">app</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create and configure a new Flask app instance for each test using an in-memory DB.&quot;&quot;&quot;</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -56,7 +56,7 @@
 <div class="viewcode-block" id="client">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.client">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A test client for the Flask app.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span></div>
 
@@ -64,7 +64,7 @@
 
 <div class="viewcode-block" id="test_build_table_name">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.test_build_table_name">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_build_table_name</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">test_build_table_name</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify that the Build model has the correct table name.&quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">Build</span><span class="o">.</span><span class="n">__tablename__</span> <span class="o">==</span> <span class="s2">&quot;builds&quot;</span></div>
 
@@ -72,7 +72,7 @@
 
 <div class="viewcode-block" id="test_add_build">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.test_add_build">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_add_build</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_add_build</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test the add_build static method.</span>
 
@@ -103,7 +103,7 @@
 
 <div class="viewcode-block" id="test_build_instance_creation">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.test_build_instance_creation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_build_instance_creation</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_build_instance_creation</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test that a Build instance can be created, added to the session,</span>
 <span class="sd">    and properly queried.</span>
@@ -127,7 +127,7 @@
 
 <div class="viewcode-block" id="test_persistence_after_db_shutdown">
 <a class="viewcode-back" href="../test_build_db.html#test_build_db.test_persistence_after_db_shutdown">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_persistence_after_db_shutdown</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">test_persistence_after_db_shutdown</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test that data persists after a simulated database shutdown/restart.</span>
 

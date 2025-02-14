@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test_syntax_check &#8212; CI/CD 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
     <script src="../_static/documentation_options.js?v=2709fde1"></script>
@@ -31,18 +31,18 @@
           <div class="body" role="main">
             
   <h1>Source code for test_syntax_check</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">syntax_check</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">email_response</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">syntax_check</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">email_response</span> <span class="kn">import</span> <span class="n">Response</span>
 
 <div class="viewcode-block" id="TestSyntaxCheck">
 <a class="viewcode-back" href="../test_syntax_check.html#test_syntax_check.TestSyntaxCheck">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">TestSyntaxCheck</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TestSyntaxCheck</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <div class="viewcode-block" id="TestSyntaxCheck.__init__">
 <a class="viewcode-back" href="../test_syntax_check.html#test_syntax_check.TestSyntaxCheck.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="o">=</span><span class="s1">&#39;runTest&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="o">=</span><span class="s1">&#39;runTest&#39;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">methodName</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_right</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;file_right.py&quot;</span><span class="p">)</span>
@@ -52,14 +52,14 @@
 
 <div class="viewcode-block" id="TestSyntaxCheck.setUp">
 <a class="viewcode-back" href="../test_syntax_check.html#test_syntax_check.TestSyntaxCheck.setUp">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;Test Testsson&quot;</span><span class="p">,</span> <span class="s2">&quot;tt@test.test&quot;</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestSyntaxCheck.test_check_syntax_fail">
 <a class="viewcode-back" href="../test_syntax_check.html#test_syntax_check.TestSyntaxCheck.test_check_syntax_fail">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_check_syntax_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if check_syntax fails with a file containing wrong syntax.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -72,7 +72,7 @@
 
 <div class="viewcode-block" id="TestSyntaxCheck.test_check_syntax_successful">
 <a class="viewcode-back" href="../test_syntax_check.html#test_syntax_check.TestSyntaxCheck.test_check_syntax_successful">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_check_syntax_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if check_syntax succeeds with a file containing the right syntax.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
