@@ -47,12 +47,16 @@ class TestGenerateDocs(unittest.TestCase):
         """
 
         # Establishes base dirs
-        build_dir = os.path.abspath("/build")
+        docs_dir = os.path.abspath("../docs")
+        build_dir = os.path.abspath("../docs/build")
 
         # Remove build dir if it exists, to properly test creation of the build directory
         if os.path.exists(build_dir):
+            print (self.base_dir)
             shutil.rmtree(build_dir)
 
+        
+        os.chdir(docs_dir)
         generate_docs(logging)
 
         assert os.path.exists(build_dir), "There's no build dir in docs/build for the docs"
