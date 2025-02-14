@@ -148,7 +148,7 @@ def webhook():
             )
 
         build_status = "success" if overall_success else "failure"
-
+        print(f"build_status: {build_status}")
         # get logs
         mem_handler.flush()
         build_logs = log_capture_string.getvalue()

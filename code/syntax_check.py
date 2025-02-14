@@ -47,7 +47,7 @@ def check_syntax_and_formatting(local_code_file, file_path, email_response, logg
 
     if not syntax_checked:
         email_response.append_content(f"Syntax error found in {file_path}.")
-        logging.warn(f"Syntax check passed for {file_path}. Aborting.")
+        logging.warn(f"Syntax check failed for {file_path}. Aborting.")
         return False, error_message
     
     email_response.append_content(f"Syntax check passed for {file_path}.")
