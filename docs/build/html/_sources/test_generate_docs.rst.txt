@@ -1,7 +1,0 @@
-test\_generate\_docs module
-===========================
-
-.. automodule:: test_generate_docs
-   :members:
-   :undoc-members:
-   :show-inheritance:

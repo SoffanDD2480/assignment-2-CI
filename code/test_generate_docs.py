@@ -45,7 +45,7 @@ class TestGenerateDocs(unittest.TestCase):
         Should result in a build directory created, with the docs.
         """
 
-        self.base_dir = os.path.abspath("..")
+        self.base_dir = os.path.abspath(".")
         self.docs_dir = os.path.join(self.base_dir, "docs")
         self.build_dir = os.path.join(self.docs_dir, "build")
 
