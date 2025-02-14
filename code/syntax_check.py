@@ -112,12 +112,10 @@ def check_syntax(file_path, email_response, logging):
         if result.returncode != 0:
             error_message = f"Syntax errors detected in {file_path}:\n{pylint_output}"
             logging.error(error_message)
-            email_response.append_content(error_message)
             return False, pylint_output  
 
         success_message = f"Syntax check passed for {file_path}."
         logging.info(success_message)
-        email_response.append_content(success_message)
         return True, ""
 
     except FileNotFoundError:
