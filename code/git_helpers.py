@@ -69,8 +69,9 @@ def filter_files(data):
     changed_code_files = [
         file_path
         for file_path in changed_files
-        if file_path.startswith(".sample_dir/assignment-2-CI/code/") and file_path.endswith(".py")
+        if file_path.startswith("code/") and file_path.endswith(".py")
     ]
+    print(changed_code_files)
     return changed_code_files
 
 # test
