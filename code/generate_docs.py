@@ -22,7 +22,7 @@ def generate_docs(logging):
         subprocess.CalledProcessError: If sphinx-apidoc or make html commands fail
         OSError: If directory operations fail
     """
-    base_dir = os.path.abspath(os.getcwd())
+    base_dir = os.path.abspath(os.getcwd())  # Get the absolute base directory
     docs_dir = os.path.join(base_dir, "docs")
     code_dir = os.path.join(base_dir, "code")
 
@@ -73,5 +73,3 @@ def generate_docs(logging):
         if e.stderr:
             logging.error("Make html errors:\n%s", e.stderr)
         return
-
-# Test final -13

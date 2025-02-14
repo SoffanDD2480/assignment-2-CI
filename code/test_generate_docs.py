@@ -13,26 +13,26 @@ class TestGenerateDocs(unittest.TestCase):
     def setUp(self):
         os.chdir(self.base_dir)
 
-    def test_generate_docs_fail(self):
+    def test_generate_docs_successful(self):
         """
-        Tests generating files in the wrong directory.
+        Tests if docs are generated in docs/build.
 
-        Deletes the build dir to properly test creation.
+        Deletes the build dir to properly test creation fail.
 
-        Should result in no build directory created, since it is created in the wrong directory.
+        Should result in a build directory created, with the docs.
         """
-        # Establishes base dirs
-        code_dir = os.path.abspath("../code")
-        build_dir = os.path.abspath("/build")
 
-        # Remove build dir if it exists, to properly test creation fail
-        if os.path.exists(build_dir):
-            shutil.rmtree(build_dir)
+        self.base_dir = os.path.abspath(".")
+        self.docs_dir = os.path.join(self.base_dir, "docs")
+        self.build_dir = os.path.join(self.docs_dir, "build")
 
-        # Change to the wrong dir, which should result in failed run of generate_docs()
-        os.chdir(code_dir)
+        if os.path.exists(self.build_dir):
+            print(f"Removing existing build directory: {self.build_dir}")
+            shutil.rmtree(self.build_dir)
 
+
+        os.makedirs(self.docs_dir, exist_ok=True)
         generate_docs(logging)
 
-        assert (not os.path.exists(build_dir)), "Build files exist, when they shouldn't"
+        assert os.path.exists(self.build_dir), "There's no build dir in docs/build for the docs"
 

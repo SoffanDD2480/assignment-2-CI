@@ -54,32 +54,6 @@
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="TestGenerateDocs.test_generate_docs_fail">
-<a class="viewcode-back" href="../test_generate_docs.html#test_generate_docs.TestGenerateDocs.test_generate_docs_fail">[docs]</a>
-    <span class="k">def</span> <span class="nf">test_generate_docs_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Tests generating files in the wrong directory.</span>
-
-<span class="sd">        Deletes the build dir to properly test creation.</span>
-
-<span class="sd">        Should result in no build directory created, since it is created in the wrong directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Establishes base dirs</span>
-        <span class="n">code_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;../code&quot;</span><span class="p">)</span>
-        <span class="n">build_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;/build&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Remove build dir if it exists, to properly test creation fail</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">build_dir</span><span class="p">):</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">build_dir</span><span class="p">)</span>
-
-        <span class="c1"># Change to the wrong dir, which should result in failed run of generate_docs()</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">code_dir</span><span class="p">)</span>
-
-        <span class="n">generate_docs</span><span class="p">(</span><span class="n">logging</span><span class="p">)</span>
-
-        <span class="k">assert</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">build_dir</span><span class="p">)),</span> <span class="s2">&quot;Build files exist, when they shouldn&#39;t&quot;</span></div>
-
-
 <div class="viewcode-block" id="TestGenerateDocs.test_generate_docs_successful">
 <a class="viewcode-back" href="../test_generate_docs.html#test_generate_docs.TestGenerateDocs.test_generate_docs_successful">[docs]</a>
     <span class="k">def</span> <span class="nf">test_generate_docs_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

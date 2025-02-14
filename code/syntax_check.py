@@ -194,5 +194,3 @@ def format_file(file_path, email_response: Response, local_code_file, logging):
         logging.warn(f"Error formatting {file_path} with Black: {error_message}")
         # Skip to the next file if formatting fails.
         return None
-
-# Test final -13
