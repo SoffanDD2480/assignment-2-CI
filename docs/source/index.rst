@@ -1,4 +1,4 @@
-Welcome to MyProject's Documentation!
+Welcome to soffans's assignment 2 Documentation!
 =======================================
 
 .. toctree::

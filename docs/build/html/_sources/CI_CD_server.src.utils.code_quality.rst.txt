@@ -1,0 +1,37 @@
+CI\_CD\_server.src.utils.code\_quality package
+==============================================
+
+Submodules
+----------
+
+CI\_CD\_server.src.utils.code\_quality.formatting module
+--------------------------------------------------------
+
+.. automodule:: CI_CD_server.src.utils.code_quality.formatting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.utils.code\_quality.quality\_check module
+------------------------------------------------------------
+
+.. automodule:: CI_CD_server.src.utils.code_quality.quality_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.utils.code\_quality.syntax module
+----------------------------------------------------
+
+.. automodule:: CI_CD_server.src.utils.code_quality.syntax
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: CI_CD_server.src.utils.code_quality
+   :members:
+   :undoc-members:
+   :show-inheritance:

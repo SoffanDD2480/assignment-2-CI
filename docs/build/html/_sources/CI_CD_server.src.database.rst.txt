@@ -1,0 +1,21 @@
+CI\_CD\_server.src.database package
+===================================
+
+Submodules
+----------
+
+CI\_CD\_server.src.database.db module
+-------------------------------------
+
+.. automodule:: CI_CD_server.src.database.db
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: CI_CD_server.src.database
+   :members:
+   :undoc-members:
+   :show-inheritance:

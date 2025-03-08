@@ -1,0 +1,45 @@
+CI\_CD\_server.src.utils package
+================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   CI_CD_server.src.utils.code_quality
+
+Submodules
+----------
+
+CI\_CD\_server.src.utils.filter module
+--------------------------------------
+
+.. automodule:: CI_CD_server.src.utils.filter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.utils.generate\_docs module
+----------------------------------------------
+
+.. automodule:: CI_CD_server.src.utils.generate_docs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.utils.git module
+-----------------------------------
+
+.. automodule:: CI_CD_server.src.utils.git
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: CI_CD_server.src.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

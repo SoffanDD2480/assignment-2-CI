@@ -1,0 +1,25 @@
+from flask_sqlalchemy import SQLAlchemy
+
+# Create an SQLAlchemy instance that will be used across the application
+db = SQLAlchemy()
+
+
+def init_db(app):
+    """
+    Initialize the database for the Flask app.
+
+    Args:
+        app (Flask): The Flask application instance.
+
+    Example:
+        >>> from flask import Flask
+        >>> app = Flask(__name__)
+        >>> init_db(app)
+    """
+    app.config["SQLALCHEMY_DATABASE_URI"] = app.config.get(
+        "SQLALCHEMY_DATABASE_URI", "sqlite:///builds.db"
+    )
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()

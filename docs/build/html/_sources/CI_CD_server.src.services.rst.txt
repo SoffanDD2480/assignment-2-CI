@@ -1,0 +1,45 @@
+CI\_CD\_server.src.services package
+===================================
+
+Submodules
+----------
+
+CI\_CD\_server.src.services.build\_service module
+-------------------------------------------------
+
+.. automodule:: CI_CD_server.src.services.build_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.services.ci\_service module
+----------------------------------------------
+
+.. automodule:: CI_CD_server.src.services.ci_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.services.email\_services module
+--------------------------------------------------
+
+.. automodule:: CI_CD_server.src.services.email_services
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.services.test\_runner module
+-----------------------------------------------
+
+.. automodule:: CI_CD_server.src.services.test_runner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: CI_CD_server.src.services
+   :members:
+   :undoc-members:
+   :show-inheritance:
