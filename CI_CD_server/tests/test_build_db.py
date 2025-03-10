@@ -1,14 +1,16 @@
+from pathlib import Path
 import pytest
 
 from flask import Flask
 from datetime import datetime
+from typing import Generator, Any
 
 from src.database.db import init_db, db
 from src.models.build import Build
 
 
 @pytest.fixture
-def app():
+def app() -> Generator[Flask, None, None]:
     """Create and configure a new Flask app instance for each test using an in-memory DB."""
     app = Flask(__name__)
 
@@ -20,17 +22,17 @@ def app():
 
 
 @pytest.fixture
-def client(app):
+def client(app: Flask) -> Any:
     """A test client for the Flask app."""
     return app.test_client()
 
 
-def test_build_table_name():
+def test_build_table_name() -> None:
     """Verify that the Build model has the correct table name."""
     assert Build.__tablename__ == "builds"
 
 
-def test_add_build(app, capsys):
+def test_add_build(app: Flask, capsys: pytest.CaptureFixture) -> None:
     """
     Test the add_build static method.
 
@@ -40,44 +42,40 @@ def test_add_build(app, capsys):
     - The build_date is properly set.
     """
     commit_sha = "abcdef123456"
-    logs = "Test build logs"
     status = "success"
 
     with app.app_context():
-        Build.add_build(commit_sha, logs, status)
+        Build.add_build(commit_sha, status)
 
         captured = capsys.readouterr().out
         assert "Adding build to database." in captured
 
         build = Build.query.filter_by(commit_sha=commit_sha).first()
         assert build is not None
-        assert build.logs == logs
         assert build.status == status
         assert isinstance(build.build_date, datetime)
 
 
-def test_build_instance_creation(app):
+def test_build_instance_creation(app: Flask) -> None:
     """
     Test that a Build instance can be created, added to the session,
     and properly queried.
     """
     commit_sha = "123456abcdef"
-    logs = "Another test build"
     status = "failed"
 
     with app.app_context():
-        new_build = Build(commit_sha, logs, status)
+        new_build = Build(commit_sha, status)
         db.session.add(new_build)
         db.session.commit()
 
         build = Build.query.filter_by(commit_sha=commit_sha).first()
         assert build is not None
         assert build.commit_sha == commit_sha
-        assert build.logs == logs
         assert build.status == status
 
 
-def test_persistence_after_db_shutdown(tmp_path):
+def test_persistence_after_db_shutdown(tmp_path: Path) -> None:
     """
     Test that data persists after a simulated database shutdown/restart.
 
@@ -93,10 +91,9 @@ def test_persistence_after_db_shutdown(tmp_path):
     init_db(app1)
 
     with app1.app_context():
-        Build.add_build("persist_sha", "Persistent logs", "success")
+        Build.add_build("persist_sha", "success")
         build = Build.query.filter_by(commit_sha="persist_sha").first()
         assert build is not None
-        assert build.logs == "Persistent logs"
         assert build.status == "success"
 
     app2 = Flask(__name__)
@@ -108,5 +105,4 @@ def test_persistence_after_db_shutdown(tmp_path):
         build = Build.query.filter_by(commit_sha="persist_sha").first()
 
         assert build is not None
-        assert build.logs == "Persistent logs"
         assert build.status == "success"

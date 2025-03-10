@@ -1,7 +1,10 @@
+from pathlib import Path
 import subprocess
+from src.services.email_services import Response
+from src.config.server_logger_config import server_logger
 
 
-def check_syntax(file_path, email_response, logging):
+def check_syntax(file_path: Path, email_response: Response) -> tuple[bool, str]:
     """
     Check the syntax of a Python file using pylint.
 
@@ -12,7 +15,6 @@ def check_syntax(file_path, email_response, logging):
     Args:
         file_path (str): Path to the Python file to check
         email_response: Object to store email content.
-        logging: Logger instance for recording operations
 
     Returns:
         tuple: (bool, str) -> True if syntax is valid, False if parsing errors found
@@ -25,18 +27,20 @@ def check_syntax(file_path, email_response, logging):
         pylint_output = result.stdout.strip()
 
         if result.returncode != 0:
-            logging.error(f"Syntax errors detected in {file_path}:\n{pylint_output}")
+            server_logger.error(
+                f"Syntax errors detected in {file_path}:\n{pylint_output}"
+            )
             return False, pylint_output
 
-        logging.info(f"Syntax check passed for {file_path}.")
+        server_logger.info(f"Syntax check passed for {file_path}.")
         return True, ""
 
     except FileNotFoundError:
         error_message = f"Error: pylint not found for {file_path}."
-        logging.error(error_message)
+        server_logger.error(error_message)
         email_response.append_content(error_message)
         return False, error_message
 
     except Exception as e:
-        logging.error(f"Unexpected error during syntax check: {e}")
+        server_logger.error(f"Unexpected error during syntax check: {e}")
         return False, str(e)

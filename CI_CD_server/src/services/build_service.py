@@ -1,7 +1,8 @@
+from typing import Optional
 from src.models.build import Build
 
 
-def get_all_builds():
+def get_all_builds() -> list[dict]:
     """
     Retrieve all builds ordered by date (newest first).
 
@@ -12,7 +13,7 @@ def get_all_builds():
     return [format_build(build) for build in all_builds]
 
 
-def get_build(build_id):
+def get_build(build_id: int) -> Optional[dict]:
     """
     Retrieve a build by ID.
 
@@ -28,7 +29,7 @@ def get_build(build_id):
     return None
 
 
-def get_builds_by_status(status):
+def get_builds_by_status(status: str) -> list[dict]:
     """
     Retrieve builds filtered by status.
 
@@ -42,7 +43,7 @@ def get_builds_by_status(status):
     return [format_build(build, include_logs=True) for build in builds]
 
 
-def format_build(build, include_logs=False):
+def format_build(build: Build, include_logs: bool = False) -> dict:
     """
     Format a build object as a dictionary.
 

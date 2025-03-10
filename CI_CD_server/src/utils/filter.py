@@ -1,4 +1,4 @@
-def filter_files(data):
+def filter_files(data: dict) -> list[str]:
     """
     Filter changed files from a GitHub webhook push event payload.
 
@@ -18,4 +18,7 @@ def filter_files(data):
             changed_files.add(file_path)
         # We skip removed files.
 
-    return changed_files
+    # Filter out non-Python files
+    changed_python_files = [file for file in changed_files if file.endswith(".py")]
+
+    return changed_python_files

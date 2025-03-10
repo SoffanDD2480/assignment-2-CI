@@ -1,10 +1,13 @@
-import os
+from pathlib import Path
 import subprocess
 
+from src.services.email_services import Response
 from src.config.test_logger_config import test_logger, TEST_LOG_FILE
 
 
-def test_changed_code_files(changed_code_files, repo_path, email_response):
+def run_project_tests(
+    changed_files: list[str], repo_path: Path, email_response: Response
+) -> bool:
     """
     Run tests for all modified Python files in the repository.
 
@@ -15,7 +18,7 @@ def test_changed_code_files(changed_code_files, repo_path, email_response):
     4. Handles execution errors
 
     Args:
-        changed_code_files (list[str]): List of Python files that were modified
+        changed_files (list[str]): List of Python files that were modified
         repo_path (str): Path to the repository root directory
         email_response (Response): Email response object to append results to
 
@@ -24,29 +27,19 @@ def test_changed_code_files(changed_code_files, repo_path, email_response):
 
     Raises:
         Exception: Catches and logs any errors during test execution
-
-    Example:
-        >>> from email_response import Response
-        >>> email_response = Response(("John", "john@example.com"), "main")
-        >>> changed_files = ["code/calculator.py", "code/utils.py"]
-        >>> repo_path = "/path/to/repository"
-        >>> test_changed_code_files(changed_files, repo_path, email_response)
-        # Output in test_runs.log:
-        # 2025-02-12 10:30:15 - INFO - Test results:
-        # 2025-02-12 10:30:15 - INFO - STDOUT: 5 passed in 0.27s
     """
 
     # Only run tests if there are changed code files
-    if not changed_code_files:
+    if not changed_files:
         msg = "No Python code files were changed. Skipping tests."
         test_logger.info(msg)
         email_response.append_content(msg)
         return True
 
-    tests_dir = os.path.join(repo_path, "tests")
+    tests_dir = repo_path / "CI_CD_server" / "tests"
 
-    # Check if tests directory exists
-    if not os.path.exists(tests_dir):
+    # Check if tests directory exists using Path.exists()
+    if not tests_dir.exists():
         msg = f"Tests directory not found at: {tests_dir}"
         test_logger.warning(msg)
         email_response.append_content(msg)

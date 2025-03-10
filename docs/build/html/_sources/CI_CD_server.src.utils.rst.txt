@@ -1,6 +1,11 @@
 CI\_CD\_server.src.utils package
 ================================
 
+.. automodule:: CI_CD_server.src.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -36,10 +41,10 @@ CI\_CD\_server.src.utils.git module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+CI\_CD\_server.src.utils.path module
+------------------------------------
 
-.. automodule:: CI_CD_server.src.utils
+.. automodule:: CI_CD_server.src.utils.path
    :members:
    :undoc-members:
    :show-inheritance:

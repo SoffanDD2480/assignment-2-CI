@@ -6,3 +6,4 @@ assignment-2-CI
 
    CI_CD_server
    setup
+   trigger_webhook

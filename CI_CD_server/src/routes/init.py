@@ -1,8 +1,9 @@
+from flask import Flask
 from .webhook_routes import webhook_bp
 from .build_routes import build_bp
 
 
-def register_routes(app):
+def register_routes(app: Flask) -> None:
     """
     Register all blueprint routes with the app.
 

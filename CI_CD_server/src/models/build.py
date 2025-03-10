@@ -27,32 +27,28 @@ class Build(db.Model):
         doc="Date and time of the build.",
     )
 
-    logs = db.Column(db.Text, nullable=False, doc="Build logs (text).")
     status = db.Column(
         db.String(20), nullable=False, doc="Build status (max length 20)."
     )
 
-    def __init__(self, commit_sha, logs, status):
+    def __init__(self, commit_sha: str, status: str) -> None:
         """
         Initialize a new Build object.
 
         Args:
             commit_sha (str): Commit SHA for the build.
-            logs (str): Build logs.
             status (str): Build status.
         """
         self.commit_sha = commit_sha
-        self.logs = logs
         self.status = status
 
     @staticmethod
-    def add_build(commit_sha, logs, status):
+    def add_build(commit_sha: str, status: str) -> None:
         """
         Add a new build to the database.
 
         Args:
             commit_sha (str): Commit SHA for the build.
-            logs (str): Build logs.
             status (str): Build status.
 
         Example:
@@ -60,6 +56,6 @@ class Build(db.Model):
             Adding build to database.
         """
         print("Adding build to database.")
-        new_build = Build(commit_sha, logs, status)
+        new_build = Build(commit_sha, status)
         db.session.add(new_build)
         db.session.commit()

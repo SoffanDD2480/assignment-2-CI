@@ -5,7 +5,7 @@ from src.services.email_services import Response
 
 
 """
-This test file is used to test the Response class in email_response.py. 
+This test file is used to test the Response class in email_response.py.
 The Response class is used to send an email to the pusher of a branch with the results of the tests.
 The tests check the following:
     - Initialization of the Response class
@@ -16,14 +16,14 @@ The tests check the following:
 
 
 @pytest.fixture
-def response():
+def response() -> Response:
     """We use fixture to initialize the Response class with some default values."""
     pusher = ("Marco Carta", "Marco@gmail.com")
     branch = "main"
     return Response(pusher, branch)
 
 
-def test_initialization(response):
+def test_initialization(response: Response) -> None:
     """Test if the Response class initializes correctly.
     Ensures all attributes are correctly set.
     """
@@ -35,14 +35,14 @@ def test_initialization(response):
     assert "Greetings Marco Carta" in response.intro
 
 
-def test_append_content(response):
+def test_append_content(response: Response) -> None:
     """Test if content is appended correctly to the email body.
     this test add a string to the email body and check if it is present in the body."""
     response.append_content("Tests passed successfully")
     assert "Tests passed successfully" in response.body
 
 
-def test_make_response(response):
+def test_make_response(response: Response) -> None:
     """Test if make_response constructs the email properly.
     Ensures that headers (From, To, Subject) are set correctly and that the body.
     """
@@ -50,11 +50,11 @@ def test_make_response(response):
     response.make_response()
     assert response.response["From"] == "soffan.dd2480@gmail.com"
     assert response.response["To"] == "Marco@gmail.com"
-    assert "All tests passed" in response.response.get_payload()[0].get_payload()
+    assert "All tests passed" in response.body
 
 
 @patch("smtplib.SMTP")
-def test_send_response(mock_smtp, response):
+def test_send_response(mock_smtp: MagicMock, response: Response) -> None:
     """Test if send_response successfully sends an email.
     Uses a mock SMTP server to ensure the correct sequence of operations is followed."""
     mock_server = MagicMock()

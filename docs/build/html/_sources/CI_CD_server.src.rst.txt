@@ -1,6 +1,11 @@
 CI\_CD\_server.src package
 ==========================
 
+.. automodule:: CI_CD_server.src
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -13,11 +18,3 @@ Subpackages
    CI_CD_server.src.routes
    CI_CD_server.src.services
    CI_CD_server.src.utils
-
-Module contents
----------------
-
-.. automodule:: CI_CD_server.src
-   :members:
-   :undoc-members:
-   :show-inheritance:

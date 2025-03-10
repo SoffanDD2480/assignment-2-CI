@@ -1,7 +1,13 @@
+from pathlib import Path
 import subprocess
+from typing import Optional
+from src.services.email_services import Response
+from src.config.server_logger_config import server_logger
 
 
-def format_file(file_path, email_response, local_code_file, logging):
+def format_file(
+    file_path: str, local_code_file: Path, email_response: Response
+) -> Optional[subprocess.CompletedProcess]:
     """
     Format a Python file using Black code formatter.
 
@@ -11,9 +17,8 @@ def format_file(file_path, email_response, local_code_file, logging):
 
     Args:
         file_path (str): The original path of the file in the repository.
+        local_code_file (Path): The local path to the code file to be formatted.
         email_response: The email response object to append formatting results.
-        local_code_file (str): The local path to the code file to be formatted.
-        logging: Logger instance for recording operations
 
     Returns:
         subprocess.CompletedProcess: The result of the Black formatting if successful.
@@ -29,7 +34,7 @@ def format_file(file_path, email_response, local_code_file, logging):
             text=True,
         )
         email_response.append_content(f"Formatted {file_path} with Black.")
-        logging.info(f"Formatted {file_path} with Black.")
+        server_logger.info(f"Formatted {file_path} with Black.")
         return result
 
     except subprocess.CalledProcessError as e:
@@ -37,6 +42,6 @@ def format_file(file_path, email_response, local_code_file, logging):
         email_response.append_content(
             f"Error formatting {file_path} with Black: {error_message}"
         )
-        logging.warn(f"Error formatting {file_path} with Black: {error_message}")
+        server_logger.warn(f"Error formatting {file_path} with Black: {error_message}")
         # Skip to the next file if formatting fails.
         return None

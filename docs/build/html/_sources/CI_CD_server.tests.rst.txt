@@ -1,6 +1,11 @@
 CI\_CD\_server.tests package
 ============================
 
+.. automodule:: CI_CD_server.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -48,14 +53,6 @@ CI\_CD\_server.tests.test\_syntax\_check module
 -----------------------------------------------
 
 .. automodule:: CI_CD_server.tests.test_syntax_check
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: CI_CD_server.tests
    :members:
    :undoc-members:
    :show-inheritance:

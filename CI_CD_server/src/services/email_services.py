@@ -8,7 +8,7 @@ from src.config.email_config import EmailConfig
 
 
 class Response:
-    def __init__(self, pusher: tuple, branch: str):
+    def __init__(self, pusher: tuple, branch: str) -> None:
         """
         Initialize a new email response object.
 
@@ -49,12 +49,12 @@ class Response:
         self.SMTP_SERVER = EmailConfig.SMTP_SERVER
         self.SMTP_PORT = EmailConfig.SMTP_PORT
         self.intro = f"Greetings {self.NAME_RECEIVER}\n\nHere are the results from your latest push:\n\n"
-        self.body = []
+        self.body: list[str] = []
         self.passed_syntax = True
         self.passed_tests = True
 
     # Rest of the class remains unchanged
-    def append_content(self, info):
+    def append_content(self, info: str) -> None:
         """
         Append new content to the email body.
 
@@ -67,7 +67,7 @@ class Response:
         """
         self.body.append(info)
 
-    def make_response(self):
+    def make_response(self) -> None:
         """
         Construct the email message with headers and body.
 
@@ -106,7 +106,7 @@ class Response:
         body += "\n\nBest Regards,\nTeam Soffan"
         self.response.attach(MIMEText(body, "plain"))
 
-    def set_syntax_result(self, result):
+    def set_syntax_result(self, result: bool) -> None:
         """
         Set the syntax check result.
 
@@ -118,7 +118,7 @@ class Response:
         """
         self.passed_syntax = result
 
-    def set_tests_result(self, result):
+    def set_tests_result(self, result: bool) -> None:
         """
         Set the test results.
 
@@ -130,7 +130,7 @@ class Response:
         """
         self.passed_tests = result
 
-    def send_response(self):
+    def send_response(self) -> None:
         """
         Send the email using SMTP with TLS.
 

@@ -1,20 +1,25 @@
 import os
+from pathlib import Path
 import shutil
 import unittest
 
+from src.utils.path import get_repo_path
 from src.utils.generate_docs import generate_docs
-from src.config.test_logger_config import test_logger
 
 
 class TestGenerateDocs(unittest.TestCase):
-    def __init__(self, methodName="runTest"):
+    project_root: Path
+    docs_dir: Path
+    build_dir: Path
+
+    def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
-        self.base_dir = os.path.abspath(".")
+        self.project_root = Path(get_repo_path()).resolve()
 
-    def setUp(self):
-        os.chdir(self.base_dir)
+    def setUp(self) -> None:
+        os.chdir(self.project_root)
 
-    def test_generate_docs_successful(self):
+    def test_generate_docs_successful(self) -> None:
         """
         Tests if docs are generated in docs/build.
 
@@ -22,18 +27,16 @@ class TestGenerateDocs(unittest.TestCase):
 
         Should result in a build directory created, with the docs.
         """
+        self.docs_dir = self.project_root / "docs"
+        self.build_dir = self.docs_dir / "build"
 
-        self.base_dir = os.path.abspath(".")
-        self.docs_dir = os.path.join(self.base_dir, "docs")
-        self.build_dir = os.path.join(self.docs_dir, "build")
-
-        if os.path.exists(self.build_dir):
+        if self.build_dir.exists():
             print(f"Removing existing build directory: {self.build_dir}")
             shutil.rmtree(self.build_dir)
 
         os.makedirs(self.docs_dir, exist_ok=True)
-        generate_docs(test_logger)
+        generate_docs(self.project_root)
 
-        assert os.path.exists(self.build_dir), (
-            "There's no build dir in docs/build for the docs"
-        )
+        assert (
+            self.build_dir.exists()
+        ), "There's no build dir in docs/build for the docs"

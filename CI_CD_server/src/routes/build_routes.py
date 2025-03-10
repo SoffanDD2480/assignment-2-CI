@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, Response
 
 from src.services.build_service import (
     get_all_builds,
@@ -10,7 +10,7 @@ build_bp = Blueprint("build", __name__)
 
 
 @build_bp.route("/", methods=["GET"])
-def list_all_builds():
+def list_all_builds() -> Response:
     """
     Retrieve a list of all builds, ordered by build date in descending order.
 
@@ -30,7 +30,7 @@ def list_all_builds():
 
 
 @build_bp.route("/<int:build_id>", methods=["GET"])
-def get_build_by_id(build_id):
+def get_build_by_id(build_id: int) -> Response:
     """
     Retrieve a specific build by its ID.
 
@@ -58,7 +58,7 @@ def get_build_by_id(build_id):
 
 
 @build_bp.route("/errors", methods=["GET"])
-def get_build_errors():
+def get_build_errors() -> Response:
     """
     Retrieve all builds with a "failure" status.
 
@@ -78,7 +78,7 @@ def get_build_errors():
 
 
 @build_bp.route("/successes", methods=["GET"])
-def get_build_successes():
+def get_build_successes() -> Response:
     """
     Retrieve all builds with a "success" status.
 

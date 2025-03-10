@@ -1,9 +1,9 @@
-import os
+from pathlib import Path
 import shutil
-import git
+import git  # type: ignore
 
 
-def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str:
+def clone_repo(base_dir: Path, repo_name: str, branch: str, repo_url: str) -> Path:
     """
     Clone a Git repository to a local directory.
 
@@ -21,8 +21,8 @@ def clone_repo(base_dir: str, repo_name: str, branch: str, repo_url: str) -> str
         OSError: If there are file system related errors during directory cleanup
     """
 
-    repo_path = os.path.join(base_dir, repo_name)
-    if os.path.exists(repo_path):
+    repo_path = base_dir / repo_name
+    if repo_path.exists():
         shutil.rmtree(repo_path)
     git.Repo.clone_from(repo_url, repo_path, branch=branch)
     return repo_path

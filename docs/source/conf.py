@@ -5,18 +5,22 @@
 
 from pathlib import Path
 import sys
-import os
 
 # Get the docs directory
 DOCS_DIR = Path(__file__).parent.parent
 # Get the project root directory (assuming docs is at the project root)
 PROJECT_ROOT = DOCS_DIR.parent
 # Ensure Sphinx can find your code
-# sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT))
 
-ci_cd_server_path = os.path.join(PROJECT_ROOT, "CI_CD_server")
-if os.path.isdir(ci_cd_server_path):
-    sys.path.insert(0, ci_cd_server_path)
+# Add CI_CD_server directory to path if it exists
+ci_cd_server_path = PROJECT_ROOT / "CI_CD_server"
+sample_dir_path = PROJECT_ROOT / ".sample_dir/assignment-2-CI"
+
+if sample_dir_path.is_dir():
+    sys.path.insert(0, str(sample_dir_path))
+elif ci_cd_server_path.is_dir():
+    sys.path.insert(0, str(ci_cd_server_path))
 
 # -- Project information -----------------------------------------------------
 project = "CI/CD"
@@ -47,7 +51,7 @@ autodoc_default_options = {
 
 # Avoid errors if _static folder does not exist
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns: list[str] = []
 
 # -- Options for HTML output -------------------------------------------------
 html_theme = "alabaster"
