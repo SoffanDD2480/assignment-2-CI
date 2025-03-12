@@ -1,11 +1,12 @@
+from typing import Type
 from flask import Flask
 
-from src.config.app_config import Config
-from src.routes.init import register_routes
-from src.database.db import init_db
+from CI_CD_server.src.config.app_config import Config
+from CI_CD_server.src.routes.init import register_routes
+from CI_CD_server.src.database.db import init_db
 
 
-def create_app(config_class=Config):
+def create_app(config_class: Type[Config] = Config) -> Flask:
     """
     Create and configure the Flask application.
 

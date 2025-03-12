@@ -1,8 +1,8 @@
 from pathlib import Path
 import subprocess
 
-from src.services.email_services import Response
-from src.config.test_logger_config import test_logger, TEST_LOG_FILE
+from CI_CD_server.src.services.email_services import Response
+from CI_CD_server.src.config.test_logger_config import test_logger, TEST_LOG_FILE
 
 
 def run_project_tests(

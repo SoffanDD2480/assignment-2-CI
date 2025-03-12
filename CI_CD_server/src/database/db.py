@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 # Create an SQLAlchemy instance that will be used across the application
 db = SQLAlchemy()

@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 
-from src.services.ci_service import process_webhook_event
-from src.models.build import Build
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.services.ci_service import process_webhook_event
+from CI_CD_server.src.models.build import Build
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 webhook_bp = Blueprint("webhook", __name__)
 

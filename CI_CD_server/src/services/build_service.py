@@ -1,5 +1,5 @@
 from typing import Optional
-from src.models.build import Build
+from CI_CD_server.src.models.build import Build
 
 
 def get_all_builds() -> list[dict]:

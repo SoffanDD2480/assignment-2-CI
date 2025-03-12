@@ -2,8 +2,8 @@ from pathlib import Path
 
 from .syntax import check_syntax
 from .formatting import format_file
-from src.services.email_services import Response
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.services.email_services import Response
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 
 def check_syntax_and_formatting(

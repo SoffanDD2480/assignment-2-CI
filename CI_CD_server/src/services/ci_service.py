@@ -2,13 +2,15 @@ import re
 from pathlib import Path
 from flask import current_app
 
-from src.utils.git import clone_repo
-from src.utils.filter import filter_files
-from src.utils.code_quality.quality_check import check_syntax_and_formatting
-from src.services.test_runner import run_project_tests
-from src.utils.generate_docs import generate_docs
-from src.services.email_services import Response
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.utils.git import clone_repo
+from CI_CD_server.src.utils.filter import filter_files
+from CI_CD_server.src.utils.code_quality.quality_check import (
+    check_syntax_and_formatting,
+)
+from CI_CD_server.src.services.test_runner import run_project_tests
+from CI_CD_server.src.utils.generate_docs import generate_docs
+from CI_CD_server.src.services.email_services import Response
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 
 def process_webhook_event(data: dict) -> bool:

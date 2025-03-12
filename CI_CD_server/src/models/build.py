@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from src.database.db import db
+from CI_CD_server.src.database.db import db
 
 
 class Build(db.Model):

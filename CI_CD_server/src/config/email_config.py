@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 
 class EmailConfig:
@@ -16,7 +17,7 @@ class EmailConfig:
     DEFAULT_SENDER_EMAIL = "soffan.dd2480@gmail.com"
 
     @staticmethod
-    def get_email_password():
+    def get_email_password() -> Optional[str]:
         """
         Get email password from environment variables.
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 import subprocess
-from src.services.email_services import Response
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.services.email_services import Response
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 
 def check_syntax(file_path: Path, email_response: Response) -> tuple[bool, str]:

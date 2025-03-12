@@ -3,9 +3,9 @@ import shutil
 import unittest
 from pathlib import Path
 
-from src.utils.path import get_repo_path
-from src.utils.filter import filter_files
-from src.utils.git import clone_repo
+from CI_CD_server.src.utils.path import get_repo_path
+from CI_CD_server.src.utils.filter import filter_files
+from CI_CD_server.src.utils.git import clone_repo
 
 
 class TestGitHelpers(unittest.TestCase):

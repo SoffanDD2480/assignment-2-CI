@@ -3,8 +3,8 @@ from pathlib import Path
 import shutil
 import unittest
 
-from src.utils.path import get_repo_path
-from src.utils.generate_docs import generate_docs
+from CI_CD_server.src.utils.path import get_repo_path
+from CI_CD_server.src.utils.generate_docs import generate_docs
 
 
 class TestGenerateDocs(unittest.TestCase):

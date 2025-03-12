@@ -1,7 +1,7 @@
 import os
 import subprocess
 from pathlib import Path
-from src.config.server_logger_config import server_logger
+from CI_CD_server.src.config.server_logger_config import server_logger
 
 
 def generate_docs(repo_path: Path) -> None:

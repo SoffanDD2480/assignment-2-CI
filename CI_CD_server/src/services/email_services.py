@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 import time
 from datetime import datetime
 
-from src.config.email_config import EmailConfig
+from CI_CD_server.src.config.email_config import EmailConfig
 
 
 class Response:
@@ -145,6 +145,9 @@ class Response:
             ... except Exception as e:
             ...     print(f"Failed to send email: {e}")
         """
+
+        if not self.EMAIL_PASSWORD:
+            raise ValueError("Email password not configured or is None")
 
         try:
             server = smtplib.SMTP(self.SMTP_SERVER, self.SMTP_PORT)

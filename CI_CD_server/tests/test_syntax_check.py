@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 import unittest
 
-from src.services.email_services import Response
-from src.utils.code_quality.syntax import check_syntax
+from CI_CD_server.src.services.email_services import Response
+from CI_CD_server.src.utils.code_quality.syntax import check_syntax
 
 
 class TestSyntaxCheck(unittest.TestCase):

@@ -5,8 +5,8 @@ from flask import Flask
 from datetime import datetime
 from typing import Generator, Any
 
-from src.database.db import init_db, db
-from src.models.build import Build
+from CI_CD_server.src.database.db import init_db, db
+from CI_CD_server.src.models.build import Build
 
 
 @pytest.fixture
