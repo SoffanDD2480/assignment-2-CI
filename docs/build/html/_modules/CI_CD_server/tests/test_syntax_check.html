@@ -35,51 +35,57 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.services.email_services</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.code_quality.syntax</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_syntax</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.config.test_logger_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.services.email_services</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.utils.code_quality.syntax</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_syntax</span>
 
 
 <div class="viewcode-block" id="TestSyntaxCheck">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TestSyntaxCheck</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="n">base_dir</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">file_right</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">file_wrong</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">response</span><span class="p">:</span> <span class="n">Response</span>
+
 <div class="viewcode-block" id="TestSyntaxCheck.__init__">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="o">=</span><span class="s2">&quot;runTest&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;runTest&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">methodName</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_right</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;test_files&quot;</span><span class="p">,</span> <span class="s2">&quot;correct.py&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_wrong</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;test_files&quot;</span><span class="p">,</span> <span class="s2">&quot;incorrect.py&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;test_files&quot;</span> <span class="o">/</span> <span class="s2">&quot;correct.py&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_wrong</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;test_files&quot;</span> <span class="o">/</span> <span class="s2">&quot;incorrect.py&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;Test Testsson&quot;</span><span class="p">,</span> <span class="s2">&quot;tt@test.test&quot;</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestSyntaxCheck.setUp">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.setUp">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;Test Testsson&quot;</span><span class="p">,</span> <span class="s2">&quot;tt@test.test&quot;</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestSyntaxCheck.test_check_syntax_fail">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_fail">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if check_syntax fails with a file containing wrong syntax.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">result</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check_syntax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_wrong</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="p">,</span> <span class="n">test_logger</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check_syntax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_wrong</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="p">)</span>
 
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">result</span><span class="p">,</span> <span class="s2">&quot;The file doesn&#39;t pass the syntax check, when in should pass&quot;</span></div>
 
 
 <div class="viewcode-block" id="TestSyntaxCheck.test_check_syntax_successful">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_successful">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_check_syntax_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if check_syntax succeeds with a file containing the right syntax.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">result</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check_syntax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="p">,</span> <span class="n">test_logger</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">check_syntax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="p">)</span>
 
         <span class="k">assert</span> <span class="n">result</span><span class="p">,</span> <span class="s2">&quot;The file doesn&#39;t pass the syntax check, when in should pass&quot;</span></div>
 </div>

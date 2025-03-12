@@ -45,19 +45,19 @@
 <span id="ci-cd-server-tests-test-build-db-module"></span><h2>CI_CD_server.tests.test_build_db module<a class="headerlink" href="#module-CI_CD_server.tests.test_build_db" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.app">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_CD_server.tests.test_build_db.app" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">flask.Flask</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#CI_CD_server.tests.test_build_db.app" title="Link to this definition">¶</a></dt>
 <dd><p>Create and configure a new Flask app instance for each test using an in-memory DB.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.client">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CI_CD_server.tests.test_build_db.client" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">flask.Flask</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#CI_CD_server.tests.test_build_db.client" title="Link to this definition">¶</a></dt>
 <dd><p>A test client for the Flask app.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.test_add_build">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_add_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsys</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_add_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_add_build" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_add_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">flask.Flask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pytest.CaptureFixture</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_add_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_add_build" title="Link to this definition">¶</a></dt>
 <dd><p>Test the add_build static method.</p>
 <p>Verifies that:
 - The build is added to the database.
@@ -67,20 +67,20 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.test_build_instance_creation">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_build_instance_creation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_build_instance_creation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_build_instance_creation" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_build_instance_creation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">flask.Flask</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_build_instance_creation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_build_instance_creation" title="Link to this definition">¶</a></dt>
 <dd><p>Test that a Build instance can be created, added to the session,
 and properly queried.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.test_build_table_name">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_build_table_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_build_table_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_build_table_name" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_build_table_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_build_table_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_build_table_name" title="Link to this definition">¶</a></dt>
 <dd><p>Verify that the Build model has the correct table name.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_build_db.test_persistence_after_db_shutdown">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_persistence_after_db_shutdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_persistence_after_db_shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_persistence_after_db_shutdown" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_build_db.</span></span><span class="sig-name descname"><span class="pre">test_persistence_after_db_shutdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmp_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_build_db.html#test_persistence_after_db_shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_build_db.test_persistence_after_db_shutdown" title="Link to this definition">¶</a></dt>
 <dd><p>Test that data persists after a simulated database shutdown/restart.</p>
 <p>This test uses a temporary file-based SQLite database to verify that data
 added in one app context remains available after reinitializing the app.</p>
@@ -91,34 +91,34 @@ added in one app context remains available after reinitializing the app.</p>
 <span id="ci-cd-server-tests-test-email-response-module"></span><h2>CI_CD_server.tests.test_email_response module<a class="headerlink" href="#module-CI_CD_server.tests.test_email_response" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_email_response.response">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_CD_server.tests.test_email_response.response" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></span><a class="headerlink" href="#CI_CD_server.tests.test_email_response.response" title="Link to this definition">¶</a></dt>
 <dd><p>We use fixture to initialize the Response class with some default values.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_email_response.test_append_content">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_append_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_append_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_append_content" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_append_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_append_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_append_content" title="Link to this definition">¶</a></dt>
 <dd><p>Test if content is appended correctly to the email body.
 this test add a string to the email body and check if it is present in the body.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_email_response.test_initialization">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_initialization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_initialization" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_initialization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_initialization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_initialization" title="Link to this definition">¶</a></dt>
 <dd><p>Test if the Response class initializes correctly.
 Ensures all attributes are correctly set.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_email_response.test_make_response">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_make_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_make_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_make_response" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_make_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_make_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_make_response" title="Link to this definition">¶</a></dt>
 <dd><p>Test if make_response constructs the email properly.
 Ensures that headers (From, To, Subject) are set correctly and that the body.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_email_response.test_send_response">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_send_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mock_smtp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_send_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_send_response" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_email_response.</span></span><span class="sig-name descname"><span class="pre">test_send_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mock_smtp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">MagicMock</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_email_response.html#test_send_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_email_response.test_send_response" title="Link to this definition">¶</a></dt>
 <dd><p>Test if send_response successfully sends an email.
 Uses a mock SMTP server to ensure the correct sequence of operations is followed.</p>
 </dd></dl>
@@ -128,25 +128,40 @@ Uses a mock SMTP server to ensure the correct sequence of operations is followed
 <span id="ci-cd-server-tests-test-generate-docs-module"></span><h2>CI_CD_server.tests.test_generate_docs module<a class="headerlink" href="#module-CI_CD_server.tests.test_generate_docs" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_generate_docs.</span></span><span class="sig-name descname"><span class="pre">TestGenerateDocs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_generate_docs.</span></span><span class="sig-name descname"><span class="pre">TestGenerateDocs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Create an instance of the class that will use the named test
 method when executed. Raises a ValueError if the instance does
 not have a method with the specified name.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.build_dir">
+<span class="sig-name descname"><span class="pre">build_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.build_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.docs_dir">
+<span class="sig-name descname"><span class="pre">docs_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.docs_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.project_root">
+<span class="sig-name descname"><span class="pre">project_root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.project_root" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.setUp" title="Link to this definition">¶</a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_generate_docs.TestGenerateDocs.test_generate_docs_successful">
-<span class="sig-name descname"><span class="pre">test_generate_docs_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.test_generate_docs_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.test_generate_docs_successful" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_generate_docs_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_generate_docs.html#TestGenerateDocs.test_generate_docs_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_generate_docs.TestGenerateDocs.test_generate_docs_successful" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if docs are generated in docs/build.</p>
 <p>Deletes the build dir to properly test creation fail.</p>
 <p>Should result in a build directory created, with the docs.</p>
@@ -159,43 +174,68 @@ not have a method with the specified name.</p>
 <span id="ci-cd-server-tests-test-git-helpers-module"></span><h2>CI_CD_server.tests.test_git_helpers module<a class="headerlink" href="#module-CI_CD_server.tests.test_git_helpers" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_git_helpers.</span></span><span class="sig-name descname"><span class="pre">TestGitHelpers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_git_helpers.</span></span><span class="sig-name descname"><span class="pre">TestGitHelpers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Create an instance of the class that will use the named test
 method when executed. Raises a ValueError if the instance does
 not have a method with the specified name.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.base_dir">
+<span class="sig-name descname"><span class="pre">base_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.base_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.branch">
+<span class="sig-name descname"><span class="pre">branch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.branch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.repo_name">
+<span class="sig-name descname"><span class="pre">repo_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.repo_name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.repo_url">
+<span class="sig-name descname"><span class="pre">repo_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.repo_url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.setUp" title="Link to this definition">¶</a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_dir">
+<span class="sig-name descname"><span class="pre">test_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_fail">
-<span class="sig-name descname"><span class="pre">test_filter_file_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_filter_file_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_fail" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_filter_file_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_filter_file_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_fail" title="Link to this definition">¶</a></dt>
 <dd><p>Tests a fail of filtering of commited files, by providing wrong type of data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_successful">
-<span class="sig-name descname"><span class="pre">test_filter_file_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_filter_file_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_successful" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_filter_file_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_filter_file_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_successful" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if git clone works with the right inputs</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_fail">
-<span class="sig-name descname"><span class="pre">test_git_helpers_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_git_helpers_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_fail" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_git_helpers_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_git_helpers_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_fail" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if git clone fails with wrong repo</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_successful">
-<span class="sig-name descname"><span class="pre">test_git_helpers_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_git_helpers_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_successful" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_git_helpers_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_git_helpers.html#TestGitHelpers.test_git_helpers_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_successful" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if git clone works with the right inputs</p>
 </dd></dl>
 
@@ -206,31 +246,51 @@ not have a method with the specified name.</p>
 <span id="ci-cd-server-tests-test-syntax-check-module"></span><h2>CI_CD_server.tests.test_syntax_check module<a class="headerlink" href="#module-CI_CD_server.tests.test_syntax_check" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_syntax_check.</span></span><span class="sig-name descname"><span class="pre">TestSyntaxCheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CI_CD_server.tests.test_syntax_check.</span></span><span class="sig-name descname"><span class="pre">TestSyntaxCheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Create an instance of the class that will use the named test
 method when executed. Raises a ValueError if the instance does
 not have a method with the specified name.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.base_dir">
+<span class="sig-name descname"><span class="pre">base_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.base_dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.file_right">
+<span class="sig-name descname"><span class="pre">file_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.file_right" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.file_wrong">
+<span class="sig-name descname"><span class="pre">file_wrong</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Path</span></em><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.file_wrong" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.response">
+<span class="sig-name descname"><span class="pre">response</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></em><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.response" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.setUp">
-<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.setUp" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.setUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.setUp" title="Link to this definition">¶</a></dt>
 <dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_fail">
-<span class="sig-name descname"><span class="pre">test_check_syntax_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.test_check_syntax_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_fail" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_check_syntax_fail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.test_check_syntax_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_fail" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if check_syntax fails with a file containing wrong syntax.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_successful">
-<span class="sig-name descname"><span class="pre">test_check_syntax_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.test_check_syntax_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_successful" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_check_syntax_successful</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/tests/test_syntax_check.html#TestSyntaxCheck.test_check_syntax_successful"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.tests.test_syntax_check.TestSyntaxCheck.test_check_syntax_successful" title="Link to this definition">¶</a></dt>
 <dd><p>Tests if check_syntax succeeds with a file containing the right syntax.</p>
 </dd></dl>
 

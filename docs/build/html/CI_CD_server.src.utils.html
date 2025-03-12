@@ -40,9 +40,6 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html">CI_CD_server.src.utils.code_quality package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#CI_CD_server.src.utils.code_quality.check_syntax"><code class="docutils literal notranslate"><span class="pre">check_syntax()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#CI_CD_server.src.utils.code_quality.check_syntax_and_formatting"><code class="docutils literal notranslate"><span class="pre">check_syntax_and_formatting()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#CI_CD_server.src.utils.code_quality.format_file"><code class="docutils literal notranslate"><span class="pre">format_file()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#module-CI_CD_server.src.utils.code_quality.formatting">CI_CD_server.src.utils.code_quality.formatting module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#CI_CD_server.src.utils.code_quality.formatting.format_file"><code class="docutils literal notranslate"><span class="pre">format_file()</span></code></a></li>
@@ -68,7 +65,7 @@
 <span id="ci-cd-server-src-utils-filter-module"></span><h2>CI_CD_server.src.utils.filter module<a class="headerlink" href="#module-CI_CD_server.src.utils.filter" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.filter.filter_files">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.filter.</span></span><span class="sig-name descname"><span class="pre">filter_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/filter.html#filter_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.filter.filter_files" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.filter.</span></span><span class="sig-name descname"><span class="pre">filter_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/filter.html#filter_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.filter.filter_files" title="Link to this definition">¶</a></dt>
 <dd><p>Filter changed files from a GitHub webhook push event payload.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -88,7 +85,7 @@
 <span id="ci-cd-server-src-utils-generate-docs-module"></span><h2>CI_CD_server.src.utils.generate_docs module<a class="headerlink" href="#module-CI_CD_server.src.utils.generate_docs" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.generate_docs.generate_docs">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.generate_docs.</span></span><span class="sig-name descname"><span class="pre">generate_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/generate_docs.html#generate_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.generate_docs.generate_docs" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.generate_docs.</span></span><span class="sig-name descname"><span class="pre">generate_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repo_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/generate_docs.html#generate_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.generate_docs.generate_docs" title="Link to this definition">¶</a></dt>
 <dd><p>Generate Sphinx documentation for the project’s Python modules.</p>
 <p>This function performs the following steps:
 1. Verifies existence of docs/ and CI_CD_server/ directories
@@ -97,7 +94,7 @@
 4. Executes make html to build HTML documentation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>logging</strong> – Logging module instance for recording operations</p>
+<dd class="field-odd"><p><strong>repo_path</strong> – Path to the root directory of the repository</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Function returns early if any step fails</p>
@@ -119,7 +116,7 @@
 <span id="ci-cd-server-src-utils-git-module"></span><h2>CI_CD_server.src.utils.git module<a class="headerlink" href="#module-CI_CD_server.src.utils.git" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.git.clone_repo">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.git.</span></span><span class="sig-name descname"><span class="pre">clone_repo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/git.html#clone_repo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.git.clone_repo" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.git.</span></span><span class="sig-name descname"><span class="pre">clone_repo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/git.html#clone_repo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.git.clone_repo" title="Link to this definition">¶</a></dt>
 <dd><p>Clone a Git repository to a local directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -146,8 +143,47 @@
 </dd></dl>
 
 </section>
-<section id="ci-cd-server-src-utils-path-module">
-<h2>CI_CD_server.src.utils.path module<a class="headerlink" href="#ci-cd-server-src-utils-path-module" title="Link to this heading">¶</a></h2>
+<section id="module-CI_CD_server.src.utils.path">
+<span id="ci-cd-server-src-utils-path-module"></span><h2>CI_CD_server.src.utils.path module<a class="headerlink" href="#module-CI_CD_server.src.utils.path" title="Link to this heading">¶</a></h2>
+<p>Utility functions for handling file paths in the project.</p>
+<p>This module provides helper functions for resolving paths relative to the
+project root and ensuring consistent path handling across the codebase.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="CI_CD_server.src.utils.path.get_absolute_path">
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.path.</span></span><span class="sig-name descname"><span class="pre">get_absolute_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relative_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/path.html#get_absolute_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.path.get_absolute_path" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a relative path to an absolute path based on project root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>relative_path</strong> (<em>str</em>) – A path relative to the project root</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The absolute path as a Path object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_absolute_path</span><span class="p">(</span><span class="s2">&quot;docs/source&quot;</span><span class="p">)</span>
+<span class="go">PosixPath(&#39;/Users/username/Programming/Github/assignment-2-CI/docs/source&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="CI_CD_server.src.utils.path.get_repo_path">
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.path.</span></span><span class="sig-name descname"><span class="pre">get_repo_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/path.html#get_repo_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.path.get_repo_path" title="Link to this definition">¶</a></dt>
+<dd><p>Get the absolute path to the repository root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The absolute path to the repository root as a Path object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

@@ -35,82 +35,6 @@
 
   <section id="module-CI_CD_server.src.utils.code_quality">
 <span id="ci-cd-server-src-utils-code-quality-package"></span><h1>CI_CD_server.src.utils.code_quality package<a class="headerlink" href="#module-CI_CD_server.src.utils.code_quality" title="Link to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.check_syntax">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.</span></span><span class="sig-name descname"><span class="pre">check_syntax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/syntax.html#check_syntax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.check_syntax" title="Link to this definition">¶</a></dt>
-<dd><p>Check the syntax of a Python file using pylint.</p>
-<p>This function runs <cite>pylint –errors-only</cite> to detect syntax errors in the given file.
-If syntax errors are found, they are logged and stored in the email response.
-If the file passes the syntax check, a success message is logged</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>file_path</strong> (<em>str</em>) – Path to the Python file to check</p></li>
-<li><p><strong>email_response</strong> – Object to store email content.</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(bool, str) -&gt; True if syntax is valid, False if parsing errors found</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.check_syntax_and_formatting">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.</span></span><span class="sig-name descname"><span class="pre">check_syntax_and_formatting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/quality_check.html#check_syntax_and_formatting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.check_syntax_and_formatting" title="Link to this definition">¶</a></dt>
-<dd><p>Check and format Python source code files.</p>
-<p>This function performs two operations:
-1. Syntax validation using Python’s AST parser
-2. Code formatting using Black (if syntax check passes)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>local_code_file</strong> (<em>str</em>) – Path to the local copy of the file to check</p></li>
-<li><p><strong>file_path</strong> (<em>str</em>) – Original repository path of the file (for logging/reporting)</p></li>
-<li><p><strong>email_response</strong> – Email response object to append results</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if syntax is valid and formatting succeeded, False otherwise
-Message: Error message if syntax check fails</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.format_file">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.</span></span><span class="sig-name descname"><span class="pre">format_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/formatting.html#format_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.format_file" title="Link to this definition">¶</a></dt>
-<dd><p>Format a Python file using Black code formatter.</p>
-<p>This function runs <cite>black</cite> on the given file to ensure it is formatted according
-to the Black style guide. If formatting is successful, a success message is logged.
-If an error occurs during formatting, the error message is logged.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>file_path</strong> (<em>str</em>) – The original path of the file in the repository.</p></li>
-<li><p><strong>email_response</strong> – The email response object to append formatting results.</p></li>
-<li><p><strong>local_code_file</strong> (<em>str</em>) – The local path to the code file to be formatted.</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The result of the Black formatting if successful.
-None: If the formatting fails.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>subprocess.CompletedProcess</p>
-</dd>
-</dl>
-</dd></dl>
-
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
@@ -118,7 +42,7 @@ None: If the formatting fails.</p>
 <span id="ci-cd-server-src-utils-code-quality-formatting-module"></span><h2>CI_CD_server.src.utils.code_quality.formatting module<a class="headerlink" href="#module-CI_CD_server.src.utils.code_quality.formatting" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.formatting.format_file">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.formatting.</span></span><span class="sig-name descname"><span class="pre">format_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/formatting.html#format_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.formatting.format_file" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.formatting.</span></span><span class="sig-name descname"><span class="pre">format_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">CompletedProcess</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/formatting.html#format_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.formatting.format_file" title="Link to this definition">¶</a></dt>
 <dd><p>Format a Python file using Black code formatter.</p>
 <p>This function runs <cite>black</cite> on the given file to ensure it is formatted according
 to the Black style guide. If formatting is successful, a success message is logged.
@@ -127,9 +51,8 @@ If an error occurs during formatting, the error message is logged.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file_path</strong> (<em>str</em>) – The original path of the file in the repository.</p></li>
+<li><p><strong>local_code_file</strong> (<em>Path</em>) – The local path to the code file to be formatted.</p></li>
 <li><p><strong>email_response</strong> – The email response object to append formatting results.</p></li>
-<li><p><strong>local_code_file</strong> (<em>str</em>) – The local path to the code file to be formatted.</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -147,7 +70,7 @@ None: If the formatting fails.</p>
 <span id="ci-cd-server-src-utils-code-quality-quality-check-module"></span><h2>CI_CD_server.src.utils.code_quality.quality_check module<a class="headerlink" href="#module-CI_CD_server.src.utils.code_quality.quality_check" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.quality_check.check_syntax_and_formatting">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.quality_check.</span></span><span class="sig-name descname"><span class="pre">check_syntax_and_formatting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/quality_check.html#check_syntax_and_formatting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.quality_check.check_syntax_and_formatting" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.quality_check.</span></span><span class="sig-name descname"><span class="pre">check_syntax_and_formatting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_code_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/quality_check.html#check_syntax_and_formatting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.quality_check.check_syntax_and_formatting" title="Link to this definition">¶</a></dt>
 <dd><p>Check and format Python source code files.</p>
 <p>This function performs two operations:
 1. Syntax validation using Python’s AST parser
@@ -155,10 +78,9 @@ None: If the formatting fails.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>local_code_file</strong> (<em>str</em>) – Path to the local copy of the file to check</p></li>
-<li><p><strong>file_path</strong> (<em>str</em>) – Original repository path of the file (for logging/reporting)</p></li>
+<li><p><strong>local_code_file</strong> (<em>path</em>) – Path to the local copy of the file to check</p></li>
+<li><p><strong>file_path</strong> (<em>str</em>) – Original repository path of the file (for server_logger/reporting)</p></li>
 <li><p><strong>email_response</strong> – Email response object to append results</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -176,7 +98,7 @@ Message: Error message if syntax check fails</p>
 <span id="ci-cd-server-src-utils-code-quality-syntax-module"></span><h2>CI_CD_server.src.utils.code_quality.syntax module<a class="headerlink" href="#module-CI_CD_server.src.utils.code_quality.syntax" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.utils.code_quality.syntax.check_syntax">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.syntax.</span></span><span class="sig-name descname"><span class="pre">check_syntax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/syntax.html#check_syntax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.syntax.check_syntax" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.utils.code_quality.syntax.</span></span><span class="sig-name descname"><span class="pre">check_syntax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/utils/code_quality/syntax.html#check_syntax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.utils.code_quality.syntax.check_syntax" title="Link to this definition">¶</a></dt>
 <dd><p>Check the syntax of a Python file using pylint.</p>
 <p>This function runs <cite>pylint –errors-only</cite> to detect syntax errors in the given file.
 If syntax errors are found, they are logged and stored in the email response.
@@ -186,7 +108,6 @@ If the file passes the syntax check, a success message is logged</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>file_path</strong> (<em>str</em>) – Path to the Python file to check</p></li>
 <li><p><strong>email_response</strong> – Object to store email content.</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

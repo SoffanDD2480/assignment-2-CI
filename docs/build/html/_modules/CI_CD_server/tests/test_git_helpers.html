@@ -34,20 +34,28 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_files</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.git</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone_repo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.utils.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_repo_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.utils.filter</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_files</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.utils.git</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone_repo</span>
 
 
 <div class="viewcode-block" id="TestGitHelpers">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TestGitHelpers</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="n">base_dir</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">test_dir</span><span class="p">:</span> <span class="n">Path</span>
+    <span class="n">repo_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">repo_url</span><span class="p">:</span> <span class="nb">str</span>
+
 <div class="viewcode-block" id="TestGitHelpers.__init__">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="o">=</span><span class="s2">&quot;runTest&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">methodName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;runTest&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">methodName</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">get_repo_path</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;test&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">repo_name</span> <span class="o">=</span> <span class="s2">&quot;test_repo&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="s2">&quot;main&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">repo_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/SoffanDD2480/assignment-2-CI.git&quot;</span></div>
@@ -55,17 +63,16 @@
 
 <div class="viewcode-block" id="TestGitHelpers.setUp">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.setUp">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_dir</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestGitHelpers.test_git_helpers_fail">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_fail">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_git_helpers_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_git_helpers_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if git clone fails with wrong repo</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span>
             <span class="ne">Exception</span><span class="p">,</span>
             <span class="n">clone_repo</span><span class="p">,</span>
@@ -78,36 +85,35 @@
 
 <div class="viewcode-block" id="TestGitHelpers.test_git_helpers_successful">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_git_helpers_successful">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_git_helpers_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_git_helpers_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if git clone works with the right inputs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">clone_repo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">repo_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">repo_url</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="n">res</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">repo_name</span><span class="p">)</span>
-        <span class="p">),</span> <span class="s2">&quot;Repo was not cloned to the right location&quot;</span>
+        <span class="n">expected_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">repo_name</span>
+        <span class="k">assert</span> <span class="n">res</span> <span class="o">==</span> <span class="n">expected_path</span><span class="p">,</span> <span class="s2">&quot;Repo was not cloned to the right location&quot;</span>
 
-        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">)</span></div>
+        <span class="c1"># Clean up after test</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dir</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestGitHelpers.test_filter_file_fail">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_fail">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_filter_file_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_filter_file_fail</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests a fail of filtering of commited files, by providing wrong type of data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="n">filter_files</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="TestGitHelpers.test_filter_file_successful">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_git_helpers.TestGitHelpers.test_filter_file_successful">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">test_filter_file_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_filter_file_successful</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Tests if git clone works with the right inputs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="c1"># Simulates commit data</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;commits&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -123,7 +129,7 @@
         <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span>
             <span class="s2">&quot;code/test_git_helpers.py&quot;</span><span class="p">,</span>
             <span class="s2">&quot;code/build_db.py&quot;</span><span class="p">,</span>
-        <span class="p">},</span> <span class="s2">&quot;Filter function didn&#39;t filter the rigth files&quot;</span></div>
+        <span class="p">},</span> <span class="s2">&quot;Filter function didn&#39;t filter the right files&quot;</span></div>
 </div>
 
 </pre></div>

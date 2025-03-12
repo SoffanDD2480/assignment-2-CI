@@ -72,7 +72,7 @@ def test_build_instance_creation(app: Flask) -> None:
         build = Build.query.filter_by(commit_sha=commit_sha).first()
         assert build is not None
         assert build.commit_sha == commit_sha
-        assert build.status == "fail"
+        assert build.status == status
 
 
 def test_persistence_after_db_shutdown(tmp_path: Path) -> None:

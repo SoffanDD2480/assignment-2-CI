@@ -42,7 +42,7 @@
 <span id="ci-cd-server-src-routes-build-routes-module"></span><h2>CI_CD_server.src.routes.build_routes module<a class="headerlink" href="#module-CI_CD_server.src.routes.build_routes" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.build_routes.get_build_by_id">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/build_routes.html#get_build_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_by_id" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">flask.Response</span></span></span><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_by_id" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve a specific build by its ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -50,7 +50,7 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
-<dt>A JSON response containing a dictionary representing the build</dt><dd><p>with its id, commit_sha, build_date, status, and logs.
+<dt>A JSON response containing a dictionary representing the build</dt><dd><p>with its id, commit_sha, build_date and status.
 If the build is not found, returns a 404 error with a message.</p>
 </dd>
 </dl>
@@ -64,7 +64,7 @@ If the build is not found, returns a 404 error with a message.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://localhost:5000/builds/1&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-<span class="go">{&#39;id&#39;: 1, &#39;commit_sha&#39;: &#39;abcdef123456&#39;, &#39;build_date&#39;: &#39;2025-02-12 10:30:00&#39;, &#39;status&#39;: &#39;success&#39;, &#39;logs&#39;: &#39;...&#39;}</span>
+<span class="go">{&#39;id&#39;: 1, &#39;commit_sha&#39;: &#39;abcdef123456&#39;, &#39;build_date&#39;: &#39;2025-02-12 10:30:00&#39;, &#39;status&#39;: &#39;success&#39;}</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://localhost:5000/builds/999&quot;</span><span class="p">)</span>
@@ -76,7 +76,7 @@ If the build is not found, returns a 404 error with a message.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.build_routes.get_build_errors">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/build_routes.html#get_build_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_errors" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_errors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">flask.Response</span></span></span><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_errors" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve all builds with a “failure” status.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -102,7 +102,7 @@ If no builds with “failure” status are found, returns an empty list.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.build_routes.get_build_successes">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_successes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/build_routes.html#get_build_successes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_successes" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">get_build_successes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">flask.Response</span></span></span><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.get_build_successes" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve all builds with a “success” status.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -128,7 +128,7 @@ If no builds with “success” status are found, returns an empty list.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.build_routes.list_all_builds">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">list_all_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/build_routes.html#list_all_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.list_all_builds" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.build_routes.</span></span><span class="sig-name descname"><span class="pre">list_all_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">flask.Response</span></span></span><a class="headerlink" href="#CI_CD_server.src.routes.build_routes.list_all_builds" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve a list of all builds, ordered by build date in descending order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -157,7 +157,7 @@ build_date, and status.</p>
 <span id="ci-cd-server-src-routes-init-module"></span><h2>CI_CD_server.src.routes.init module<a class="headerlink" href="#module-CI_CD_server.src.routes.init" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.init.register_routes">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.init.</span></span><span class="sig-name descname"><span class="pre">register_routes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/init.html#register_routes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.init.register_routes" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.init.</span></span><span class="sig-name descname"><span class="pre">register_routes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">flask.Flask</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/routes/init.html#register_routes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.init.register_routes" title="Link to this definition">¶</a></dt>
 <dd><p>Register all blueprint routes with the app.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -171,9 +171,34 @@ build_date, and status.</p>
 <span id="ci-cd-server-src-routes-webhook-routes-module"></span><h2>CI_CD_server.src.routes.webhook_routes module<a class="headerlink" href="#module-CI_CD_server.src.routes.webhook_routes" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.routes.webhook_routes.webhook">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.webhook_routes.</span></span><span class="sig-name descname"><span class="pre">webhook</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/routes/webhook_routes.html#webhook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.routes.webhook_routes.webhook" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.routes.webhook_routes.</span></span><span class="sig-name descname"><span class="pre">webhook</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#CI_CD_server.src.routes.webhook_routes.webhook" title="Link to this definition">¶</a></dt>
 <dd><p>Handle GitHub webhook POST requests for push events.</p>
-<p>[original docstring content]</p>
+<p>This endpoint processes GitHub push events by:</p>
+<ol class="arabic simple">
+<li><p>Validating the webhook event type.</p></li>
+<li><p>Extracting push event data (branch, pusher info).</p></li>
+<li><p>Cloning the repository.</p></li>
+<li><p>Checking changed files.</p></li>
+<li><p>Running syntax checks and tests.</p></li>
+<li><p>Sending email notifications with results.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>A tuple containing the JSON response and the HTTP status code.</p>
+<ul class="simple">
+<li><p><strong>For non-push events</strong>: <cite>({“message”: “Not a push event”}, 200)</cite></p></li>
+<li><p><strong>For successful processing</strong>: <cite>({“status”: “success”, “message”: “Webhook processed”}, 200)</cite></p></li>
+<li><p><strong>For errors</strong>: <cite>({“status”: “error”, “message”: “&lt;error details&gt;”}, 500)</cite></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Exception</strong> – Logs any errors during webhook processing.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

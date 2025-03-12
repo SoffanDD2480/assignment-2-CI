@@ -42,14 +42,11 @@
 <span id="ci-cd-server-src-services-build-service-module"></span><h2>CI_CD_server.src.services.build_service module<a class="headerlink" href="#module-CI_CD_server.src.services.build_service" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.build_service.format_build">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">format_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_logs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#format_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.format_build" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">format_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build" title="CI_CD_server.src.models.build.Build"><span class="pre">Build</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#format_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.format_build" title="Link to this definition">¶</a></dt>
 <dd><p>Format a build object as a dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>build</strong> (<a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build" title="CI_CD_server.src.models.build.Build"><em>Build</em></a>) – Build object to format</p></li>
-<li><p><strong>include_logs</strong> (<em>bool</em>) – Whether to include logs in the output</p></li>
-</ul>
+<dd class="field-odd"><p><strong>build</strong> (<a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build" title="CI_CD_server.src.models.build.Build"><em>Build</em></a>) – Build object to format</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Dictionary representation of the build</p>
@@ -62,7 +59,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.build_service.get_all_builds">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_all_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_all_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_all_builds" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_all_builds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_all_builds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_all_builds" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve all builds ordered by date (newest first).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -76,7 +73,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.build_service.get_build">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_build" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_build" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve a build by ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -93,7 +90,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.build_service.get_builds_by_status">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_builds_by_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_builds_by_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_builds_by_status" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.build_service.</span></span><span class="sig-name descname"><span class="pre">get_builds_by_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/build_service.html#get_builds_by_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.build_service.get_builds_by_status" title="Link to this definition">¶</a></dt>
 <dd><p>Retrieve builds filtered by status.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -113,14 +110,11 @@
 <span id="ci-cd-server-src-services-ci-service-module"></span><h2>CI_CD_server.src.services.ci_service module<a class="headerlink" href="#module-CI_CD_server.src.services.ci_service" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.ci_service.process_webhook_event">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.ci_service.</span></span><span class="sig-name descname"><span class="pre">process_webhook_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/ci_service.html#process_webhook_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.ci_service.process_webhook_event" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.ci_service.</span></span><span class="sig-name descname"><span class="pre">process_webhook_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/ci_service.html#process_webhook_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.ci_service.process_webhook_event" title="Link to this definition">¶</a></dt>
 <dd><p>Process a webhook event from GitHub.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>dict</em>) – The webhook event payload</p></li>
-<li><p><strong>logging</strong> – Logger instance for recording operations</p></li>
-</ul>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The webhook event payload</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(result_info, overall_success)</p>
@@ -140,7 +134,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pusher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pusher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize a new email response object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -272,7 +266,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.append_content">
-<span class="sig-name descname"><span class="pre">append_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.append_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.append_content" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">append_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.append_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.append_content" title="Link to this definition">¶</a></dt>
 <dd><p>Append new content to the email body.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -283,7 +277,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.make_response">
-<span class="sig-name descname"><span class="pre">make_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.make_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.make_response" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">make_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.make_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.make_response" title="Link to this definition">¶</a></dt>
 <dd><p>Construct the email message with headers and body.</p>
 <p>Combines all the content in self.body into a single email message,
 adds headers (From, To, Subject), and attaches the body text.</p>
@@ -296,7 +290,7 @@ adds headers (From, To, Subject), and attaches the body text.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.send_response">
-<span class="sig-name descname"><span class="pre">send_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.send_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.send_response" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">send_response</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.send_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.send_response" title="Link to this definition">¶</a></dt>
 <dd><p>Send the email using SMTP with TLS.</p>
 <p>Establishes a connection to the SMTP server, authenticates using the
 provided credentials, sends the email, and closes the connection.</p>
@@ -316,7 +310,7 @@ provided credentials, sends the email, and closes the connection.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.set_syntax_result">
-<span class="sig-name descname"><span class="pre">set_syntax_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.set_syntax_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.set_syntax_result" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_syntax_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.set_syntax_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.set_syntax_result" title="Link to this definition">¶</a></dt>
 <dd><p>Set the syntax check result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -331,7 +325,7 @@ provided credentials, sends the email, and closes the connection.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CI_CD_server.src.services.email_services.Response.set_tests_result">
-<span class="sig-name descname"><span class="pre">set_tests_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.set_tests_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.set_tests_result" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_tests_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/email_services.html#Response.set_tests_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.email_services.Response.set_tests_result" title="Link to this definition">¶</a></dt>
 <dd><p>Set the test results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -350,8 +344,8 @@ provided credentials, sends the email, and closes the connection.</p>
 <section id="module-CI_CD_server.src.services.test_runner">
 <span id="ci-cd-server-src-services-test-runner-module"></span><h2>CI_CD_server.src.services.test_runner module<a class="headerlink" href="#module-CI_CD_server.src.services.test_runner" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="CI_CD_server.src.services.test_runner.test_changed_code_files">
-<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.test_runner.</span></span><span class="sig-name descname"><span class="pre">test_changed_code_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changed_code_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CI_CD_server/src/services/test_runner.html#test_changed_code_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.test_runner.test_changed_code_files" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="CI_CD_server.src.services.test_runner.run_project_tests">
+<span class="sig-prename descclassname"><span class="pre">CI_CD_server.src.services.test_runner.</span></span><span class="sig-name descname"><span class="pre">run_project_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">changed_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repo_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><span class="pre">Response</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/CI_CD_server/src/services/test_runner.html#run_project_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CI_CD_server.src.services.test_runner.run_project_tests" title="Link to this definition">¶</a></dt>
 <dd><p>Run tests for all modified Python files in the repository.</p>
 <p>This function:
 1. Runs pytest on the tests directory
@@ -361,7 +355,7 @@ provided credentials, sends the email, and closes the connection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>changed_code_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of Python files that were modified</p></li>
+<li><p><strong>changed_files</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of Python files that were modified</p></li>
 <li><p><strong>repo_path</strong> (<em>str</em>) – Path to the repository root directory</p></li>
 <li><p><strong>email_response</strong> (<a class="reference internal" href="#CI_CD_server.src.services.email_services.Response" title="CI_CD_server.src.services.email_services.Response"><em>Response</em></a>) – Email response object to append results to</p></li>
 </ul>
@@ -376,17 +370,6 @@ provided credentials, sends the email, and closes the connection.</p>
 <dd class="field-even"><p><strong>Exception</strong> – Catches and logs any errors during test execution</p>
 </dd>
 </dl>
-<p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">email_response</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">email_response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">((</span><span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;john@example.com&quot;</span><span class="p">),</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">changed_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;code/calculator.py&quot;</span><span class="p">,</span> <span class="s2">&quot;code/utils.py&quot;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">repo_path</span> <span class="o">=</span> <span class="s2">&quot;/path/to/repository&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">test_changed_code_files</span><span class="p">(</span><span class="n">changed_files</span><span class="p">,</span> <span class="n">repo_path</span><span class="p">,</span> <span class="n">email_response</span><span class="p">)</span>
-<span class="go"># Output in test_runs.log:</span>
-<span class="go"># 2025-02-12 10:30:15 - INFO - Test results:</span>
-<span class="go"># 2025-02-12 10:30:15 - INFO - STDOUT: 5 passed in 0.27s</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </section>

@@ -33,11 +33,13 @@
   <h1>Source code for CI_CD_server.src.utils.generate_docs</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.config.server_logger_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">server_logger</span>
 
 
 <div class="viewcode-block" id="generate_docs">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.utils.html#CI_CD_server.src.utils.generate_docs.generate_docs">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_docs</span><span class="p">(</span><span class="n">logging</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_docs</span><span class="p">(</span><span class="n">repo_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate Sphinx documentation for the project&#39;s Python modules.</span>
 
@@ -48,7 +50,7 @@
 <span class="sd">    4. Executes make html to build HTML documentation</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        logging: Logging module instance for recording operations</span>
+<span class="sd">        repo_path: Path to the root directory of the repository</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        None: Function returns early if any step fails</span>
@@ -58,55 +60,51 @@
 <span class="sd">        OSError: If directory operations fail</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">base_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>  <span class="c1"># Get the absolute base directory</span>
-    <span class="n">docs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s2">&quot;docs&quot;</span><span class="p">)</span>
+    <span class="n">docs_dir</span> <span class="o">=</span> <span class="n">repo_path</span> <span class="o">/</span> <span class="s2">&quot;docs&quot;</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">base_dir</span><span class="p">):</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error: base_dir not found!&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">docs_dir</span><span class="p">):</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error: docs/ directory not found!&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">docs_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">server_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: docs/ </span><span class="si">{</span><span class="n">docs_dir</span><span class="si">}</span><span class="s2"> directory not found!&quot;</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Moving to docs directory...&quot;</span><span class="p">)</span>
+    <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moving to </span><span class="si">{</span><span class="n">docs_dir</span><span class="si">}</span><span class="s2"> directory...&quot;</span><span class="p">)</span>
     <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">docs_dir</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating .rst files from Python modules...&quot;</span><span class="p">)</span>
-    <span class="n">sphinx_apidoc_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx-apidoc&quot;</span><span class="p">,</span> <span class="s2">&quot;--force&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;./source&quot;</span><span class="p">,</span> <span class="n">base_dir</span><span class="p">]</span>
+    <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Generating .rst files from Python modules...&quot;</span><span class="p">)</span>
+    <span class="n">sphinx_apidoc_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx-apidoc&quot;</span><span class="p">,</span> <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;-M&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;./source&quot;</span><span class="p">,</span> <span class="s2">&quot;./../&quot;</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
             <span class="n">sphinx_apidoc_cmd</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;.rst files successfully generated.&quot;</span><span class="p">)</span>
+        <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;.rst files successfully generated.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc warnings:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc warnings:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate .rst files: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">server_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to generate .rst files: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc errors:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Sphinx-apidoc errors:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building HTML documentation...&quot;</span><span class="p">)</span>
+    <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Building HTML documentation...&quot;</span><span class="p">)</span>
     <span class="n">make_html_cmd</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;make&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
             <span class="n">make_html_cmd</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Documentation successfully built.&quot;</span><span class="p">)</span>
+        <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Documentation successfully built.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Make html output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Make html output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Make html warnings:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Make html warnings:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to build HTML documentation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">server_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to build HTML documentation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Make html output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Make html output:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Make html errors:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">server_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Make html errors:</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="k">return</span></div>
 
 </pre></div>

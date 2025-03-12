@@ -33,7 +33,7 @@
   <h1>Source code for CI_CD_server.src.models.build</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.database.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">db</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.database.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">db</span>
 
 
 <div class="viewcode-block" id="Build">
@@ -62,37 +62,33 @@
         <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Date and time of the build.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">logs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Build logs (text).&quot;</span><span class="p">)</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
         <span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;Build status (max length 20).&quot;</span>
     <span class="p">)</span>
 
 <div class="viewcode-block" id="Build.__init__">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit_sha</span><span class="p">,</span> <span class="n">logs</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit_sha</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a new Build object.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            commit_sha (str): Commit SHA for the build.</span>
-<span class="sd">            logs (str): Build logs.</span>
 <span class="sd">            status (str): Build status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">commit_sha</span> <span class="o">=</span> <span class="n">commit_sha</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logs</span> <span class="o">=</span> <span class="n">logs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span></div>
 
 
 <div class="viewcode-block" id="Build.add_build">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build.add_build">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">logs</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a new build to the database.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            commit_sha (str): Commit SHA for the build.</span>
-<span class="sd">            logs (str): Build logs.</span>
 <span class="sd">            status (str): Build status.</span>
 
 <span class="sd">        Example:</span>
@@ -100,7 +96,7 @@
 <span class="sd">            Adding build to database.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adding build to database.&quot;</span><span class="p">)</span>
-        <span class="n">new_build</span> <span class="o">=</span> <span class="n">Build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">logs</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+        <span class="n">new_build</span> <span class="o">=</span> <span class="n">Build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
         <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_build</span><span class="p">)</span>
         <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
 </div>

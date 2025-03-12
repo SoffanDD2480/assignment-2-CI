@@ -37,7 +37,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.config.email_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmailConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.config.email_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmailConfig</span>
 
 
 <div class="viewcode-block" id="Response">
@@ -45,7 +45,7 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Response</span><span class="p">:</span>
 <div class="viewcode-block" id="Response.__init__">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pusher</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pusher</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize a new email response object.</span>
 
@@ -86,7 +86,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">SMTP_SERVER</span> <span class="o">=</span> <span class="n">EmailConfig</span><span class="o">.</span><span class="n">SMTP_SERVER</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">SMTP_PORT</span> <span class="o">=</span> <span class="n">EmailConfig</span><span class="o">.</span><span class="n">SMTP_PORT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">intro</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Greetings </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">NAME_RECEIVER</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Here are the results from your latest push:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">passed_syntax</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">passed_tests</span> <span class="o">=</span> <span class="kc">True</span></div>
 
@@ -94,7 +94,7 @@
     <span class="c1"># Rest of the class remains unchanged</span>
 <div class="viewcode-block" id="Response.append_content">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.append_content">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">append_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">append_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Append new content to the email body.</span>
 
@@ -110,7 +110,7 @@
 
 <div class="viewcode-block" id="Response.make_response">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.make_response">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">make_response</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_response</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct the email message with headers and body.</span>
 
@@ -152,7 +152,7 @@
 
 <div class="viewcode-block" id="Response.set_syntax_result">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.set_syntax_result">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_syntax_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_syntax_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the syntax check result.</span>
 
@@ -167,7 +167,7 @@
 
 <div class="viewcode-block" id="Response.set_tests_result">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.set_tests_result">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_tests_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_tests_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the test results.</span>
 
@@ -182,7 +182,7 @@
 
 <div class="viewcode-block" id="Response.send_response">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.send_response">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">send_response</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_response</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Send the email using SMTP with TLS.</span>
 
@@ -197,6 +197,9 @@
 <span class="sd">            ... except Exception as e:</span>
 <span class="sd">            ...     print(f&quot;Failed to send email: {e}&quot;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">EMAIL_PASSWORD</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Email password not configured or is None&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">server</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SMTP_SERVER</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SMTP_PORT</span><span class="p">)</span>

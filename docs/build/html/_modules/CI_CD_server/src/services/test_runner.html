@@ -31,15 +31,18 @@
           <div class="body" role="main">
 
   <h1>Source code for CI_CD_server.src.services.test_runner</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.config.test_logger_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_logger</span><span class="p">,</span> <span class="n">TEST_LOG_FILE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.services.email_services</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.config.test_logger_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_logger</span><span class="p">,</span> <span class="n">TEST_LOG_FILE</span>
 
 
-<div class="viewcode-block" id="test_changed_code_files">
-<a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.test_runner.test_changed_code_files">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_changed_code_files</span><span class="p">(</span><span class="n">changed_code_files</span><span class="p">,</span> <span class="n">repo_path</span><span class="p">,</span> <span class="n">email_response</span><span class="p">):</span>
+<div class="viewcode-block" id="run_project_tests">
+<a class="viewcode-back" href="../../../../CI_CD_server.src.services.html#CI_CD_server.src.services.test_runner.run_project_tests">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_project_tests</span><span class="p">(</span>
+    <span class="n">changed_files</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">repo_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">email_response</span><span class="p">:</span> <span class="n">Response</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run tests for all modified Python files in the repository.</span>
 
@@ -50,7 +53,7 @@
 <span class="sd">    4. Handles execution errors</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        changed_code_files (list[str]): List of Python files that were modified</span>
+<span class="sd">        changed_files (list[str]): List of Python files that were modified</span>
 <span class="sd">        repo_path (str): Path to the repository root directory</span>
 <span class="sd">        email_response (Response): Email response object to append results to</span>
 
@@ -59,29 +62,19 @@
 
 <span class="sd">    Raises:</span>
 <span class="sd">        Exception: Catches and logs any errors during test execution</span>
-
-<span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; from email_response import Response</span>
-<span class="sd">        &gt;&gt;&gt; email_response = Response((&quot;John&quot;, &quot;john@example.com&quot;), &quot;main&quot;)</span>
-<span class="sd">        &gt;&gt;&gt; changed_files = [&quot;code/calculator.py&quot;, &quot;code/utils.py&quot;]</span>
-<span class="sd">        &gt;&gt;&gt; repo_path = &quot;/path/to/repository&quot;</span>
-<span class="sd">        &gt;&gt;&gt; test_changed_code_files(changed_files, repo_path, email_response)</span>
-<span class="sd">        # Output in test_runs.log:</span>
-<span class="sd">        # 2025-02-12 10:30:15 - INFO - Test results:</span>
-<span class="sd">        # 2025-02-12 10:30:15 - INFO - STDOUT: 5 passed in 0.27s</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Only run tests if there are changed code files</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">changed_code_files</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">changed_files</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;No Python code files were changed. Skipping tests.&quot;</span>
         <span class="n">test_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">email_response</span><span class="o">.</span><span class="n">append_content</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="n">tests_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repo_path</span><span class="p">,</span> <span class="s2">&quot;tests&quot;</span><span class="p">)</span>
+    <span class="n">tests_dir</span> <span class="o">=</span> <span class="n">repo_path</span> <span class="o">/</span> <span class="s2">&quot;CI_CD_server&quot;</span> <span class="o">/</span> <span class="s2">&quot;tests&quot;</span>
 
-    <span class="c1"># Check if tests directory exists</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tests_dir</span><span class="p">):</span>
+    <span class="c1"># Check if tests directory exists using Path.exists()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tests_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Tests directory not found at: </span><span class="si">{</span><span class="n">tests_dir</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">test_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">email_response</span><span class="o">.</span><span class="n">append_content</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>

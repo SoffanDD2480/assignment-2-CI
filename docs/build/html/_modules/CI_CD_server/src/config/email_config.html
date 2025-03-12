@@ -32,6 +32,7 @@
 
   <h1>Source code for CI_CD_server.src.config.email_config</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 
 
 <div class="viewcode-block" id="EmailConfig">
@@ -53,7 +54,7 @@
 <div class="viewcode-block" id="EmailConfig.get_email_password">
 <a class="viewcode-back" href="../../../../CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig.get_email_password">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_email_password</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_email_password</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get email password from environment variables.</span>
 

@@ -31,17 +31,19 @@
           <div class="body" role="main">
 
   <h1>Source code for CI_CD_server.tests.test_build_db</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">Any</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.database.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_db</span><span class="p">,</span> <span class="n">db</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.models.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">Build</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.database.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_db</span><span class="p">,</span> <span class="n">db</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">CI_CD_server.src.models.build</span><span class="w"> </span><span class="kn">import</span> <span class="n">Build</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">app</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">app</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Flask</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create and configure a new Flask app instance for each test using an in-memory DB.&quot;&quot;&quot;</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -53,14 +55,14 @@
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Flask</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A test client for the Flask app.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="test_build_table_name">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_build_db.test_build_table_name">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_build_table_name</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_build_table_name</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Verify that the Build model has the correct table name.&quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">Build</span><span class="o">.</span><span class="n">__tablename__</span> <span class="o">==</span> <span class="s2">&quot;builds&quot;</span></div>
 
@@ -68,7 +70,7 @@
 
 <div class="viewcode-block" id="test_add_build">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_build_db.test_add_build">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_add_build</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">capsys</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_add_build</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">capsys</span><span class="p">:</span> <span class="n">pytest</span><span class="o">.</span><span class="n">CaptureFixture</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test the add_build static method.</span>
 
@@ -78,18 +80,16 @@
 <span class="sd">    - The build_date is properly set.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">commit_sha</span> <span class="o">=</span> <span class="s2">&quot;abcdef123456&quot;</span>
-    <span class="n">logs</span> <span class="o">=</span> <span class="s2">&quot;Test build logs&quot;</span>
     <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;success&quot;</span>
 
     <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
-        <span class="n">Build</span><span class="o">.</span><span class="n">add_build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">logs</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+        <span class="n">Build</span><span class="o">.</span><span class="n">add_build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 
         <span class="n">captured</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span><span class="o">.</span><span class="n">out</span>
         <span class="k">assert</span> <span class="s2">&quot;Adding build to database.&quot;</span> <span class="ow">in</span> <span class="n">captured</span>
 
         <span class="n">build</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">commit_sha</span><span class="o">=</span><span class="n">commit_sha</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">logs</span> <span class="o">==</span> <span class="n">logs</span>
         <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">status</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">build</span><span class="o">.</span><span class="n">build_date</span><span class="p">,</span> <span class="n">datetime</span><span class="p">)</span></div>
 
@@ -97,31 +97,29 @@
 
 <div class="viewcode-block" id="test_build_instance_creation">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_build_db.test_build_instance_creation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_build_instance_creation</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_build_instance_creation</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">Flask</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test that a Build instance can be created, added to the session,</span>
 <span class="sd">    and properly queried.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">commit_sha</span> <span class="o">=</span> <span class="s2">&quot;123456abcdef&quot;</span>
-    <span class="n">logs</span> <span class="o">=</span> <span class="s2">&quot;Another test build&quot;</span>
     <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;failed&quot;</span>
 
     <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
-        <span class="n">new_build</span> <span class="o">=</span> <span class="n">Build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">logs</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+        <span class="n">new_build</span> <span class="o">=</span> <span class="n">Build</span><span class="p">(</span><span class="n">commit_sha</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
         <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_build</span><span class="p">)</span>
         <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
         <span class="n">build</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">commit_sha</span><span class="o">=</span><span class="n">commit_sha</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">commit_sha</span> <span class="o">==</span> <span class="n">commit_sha</span>
-        <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">logs</span> <span class="o">==</span> <span class="n">logs</span>
         <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">status</span></div>
 
 
 
 <div class="viewcode-block" id="test_persistence_after_db_shutdown">
 <a class="viewcode-back" href="../../../CI_CD_server.tests.html#CI_CD_server.tests.test_build_db.test_persistence_after_db_shutdown">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_persistence_after_db_shutdown</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_persistence_after_db_shutdown</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Test that data persists after a simulated database shutdown/restart.</span>
 
@@ -137,10 +135,9 @@
     <span class="n">init_db</span><span class="p">(</span><span class="n">app1</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">app1</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
-        <span class="n">Build</span><span class="o">.</span><span class="n">add_build</span><span class="p">(</span><span class="s2">&quot;persist_sha&quot;</span><span class="p">,</span> <span class="s2">&quot;Persistent logs&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">)</span>
+        <span class="n">Build</span><span class="o">.</span><span class="n">add_build</span><span class="p">(</span><span class="s2">&quot;persist_sha&quot;</span><span class="p">,</span> <span class="s2">&quot;success&quot;</span><span class="p">)</span>
         <span class="n">build</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">commit_sha</span><span class="o">=</span><span class="s2">&quot;persist_sha&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">logs</span> <span class="o">==</span> <span class="s2">&quot;Persistent logs&quot;</span>
         <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;success&quot;</span>
 
     <span class="n">app2</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -152,7 +149,6 @@
         <span class="n">build</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">commit_sha</span><span class="o">=</span><span class="s2">&quot;persist_sha&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
 
         <span class="k">assert</span> <span class="n">build</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">logs</span> <span class="o">==</span> <span class="s2">&quot;Persistent logs&quot;</span>
         <span class="k">assert</span> <span class="n">build</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;success&quot;</span></div>
 
 </pre></div>
