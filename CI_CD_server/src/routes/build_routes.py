@@ -39,13 +39,13 @@ def get_build_by_id(build_id: int) -> Response:
 
     Returns:
         jsonify: A JSON response containing a dictionary representing the build
-                 with its id, commit_sha, build_date, status, and logs.
+                 with its id, commit_sha, build_date and status.
                  If the build is not found, returns a 404 error with a message.
     Example:
         >>> import requests
         >>> response = requests.get("http://localhost:5000/builds/1")
         >>> print(response.json())
-        {'id': 1, 'commit_sha': 'abcdef123456', 'build_date': '2025-02-12 10:30:00', 'status': 'success', 'logs': '...'}
+        {'id': 1, 'commit_sha': 'abcdef123456', 'build_date': '2025-02-12 10:30:00', 'status': 'success'}
 
         >>> response = requests.get("http://localhost:5000/builds/999")
         >>> print(response.json())
