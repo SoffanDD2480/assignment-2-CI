@@ -1,0 +1,34 @@
+CI\_CD\_server.src.routes package
+=================================
+
+.. automodule:: CI_CD_server.src.routes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+CI\_CD\_server.src.routes.build\_routes module
+----------------------------------------------
+
+.. automodule:: CI_CD_server.src.routes.build_routes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.routes.init module
+-------------------------------------
+
+.. automodule:: CI_CD_server.src.routes.init
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CI\_CD\_server.src.routes.webhook\_routes module
+------------------------------------------------
+
+.. automodule:: CI_CD_server.src.routes.webhook_routes
+   :members:
+   :undoc-members:
+   :show-inheritance:

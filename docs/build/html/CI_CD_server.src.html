@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CI_CD_server.src package &#8212; CI/CD 0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=10f1778b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CI_CD_server.src.config package" href="CI_CD_server.src.config.html" />
+    <link rel="prev" title="CI_CD_server package" href="CI_CD_server.html" />
+
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+
+
+
+
+  </head><body>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+          <div class="body" role="main">
+
+  <section id="module-CI_CD_server.src">
+<span id="ci-cd-server-src-package"></span><h1>CI_CD_server.src package<a class="headerlink" href="#module-CI_CD_server.src" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.config.html">CI_CD_server.src.config package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.config.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.config.html#module-CI_CD_server.src.config.app_config">CI_CD_server.src.config.app_config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config.BASE_DIR"><code class="docutils literal notranslate"><span class="pre">Config.BASE_DIR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config.REPO_NAME"><code class="docutils literal notranslate"><span class="pre">Config.REPO_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config.REPO_URL"><code class="docutils literal notranslate"><span class="pre">Config.REPO_URL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.Config.SQLALCHEMY_TRACK_MODIFICATIONS"><code class="docutils literal notranslate"><span class="pre">Config.SQLALCHEMY_TRACK_MODIFICATIONS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.TestConfig"><code class="docutils literal notranslate"><span class="pre">TestConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.TestConfig.SQLALCHEMY_DATABASE_URI"><code class="docutils literal notranslate"><span class="pre">TestConfig.SQLALCHEMY_DATABASE_URI</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.app_config.TestConfig.TESTING"><code class="docutils literal notranslate"><span class="pre">TestConfig.TESTING</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.config.html#module-CI_CD_server.src.config.email_config">CI_CD_server.src.config.email_config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig"><code class="docutils literal notranslate"><span class="pre">EmailConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig.DEFAULT_SENDER_EMAIL"><code class="docutils literal notranslate"><span class="pre">EmailConfig.DEFAULT_SENDER_EMAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig.SMTP_PORT"><code class="docutils literal notranslate"><span class="pre">EmailConfig.SMTP_PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig.SMTP_SERVER"><code class="docutils literal notranslate"><span class="pre">EmailConfig.SMTP_SERVER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.config.html#CI_CD_server.src.config.email_config.EmailConfig.get_email_password"><code class="docutils literal notranslate"><span class="pre">EmailConfig.get_email_password()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.config.html#module-CI_CD_server.src.config.server_logger_config">CI_CD_server.src.config.server_logger_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.config.html#module-CI_CD_server.src.config.test_logger_config">CI_CD_server.src.config.test_logger_config module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.database.html">CI_CD_server.src.database package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.database.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.database.html#module-CI_CD_server.src.database.db">CI_CD_server.src.database.db module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.database.html#CI_CD_server.src.database.db.init_db"><code class="docutils literal notranslate"><span class="pre">init_db()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.models.html">CI_CD_server.src.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.models.html#module-CI_CD_server.src.models.build">CI_CD_server.src.models.build module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build"><code class="docutils literal notranslate"><span class="pre">Build</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build.__init__"><code class="docutils literal notranslate"><span class="pre">Build.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.models.html#CI_CD_server.src.models.build.Build.add_build"><code class="docutils literal notranslate"><span class="pre">Build.add_build()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.routes.html">CI_CD_server.src.routes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.routes.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.routes.html#module-CI_CD_server.src.routes.build_routes">CI_CD_server.src.routes.build_routes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.build_routes.get_build_by_id"><code class="docutils literal notranslate"><span class="pre">get_build_by_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.build_routes.get_build_errors"><code class="docutils literal notranslate"><span class="pre">get_build_errors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.build_routes.get_build_successes"><code class="docutils literal notranslate"><span class="pre">get_build_successes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.build_routes.list_all_builds"><code class="docutils literal notranslate"><span class="pre">list_all_builds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.routes.html#module-CI_CD_server.src.routes.init">CI_CD_server.src.routes.init module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.init.register_routes"><code class="docutils literal notranslate"><span class="pre">register_routes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.routes.html#module-CI_CD_server.src.routes.webhook_routes">CI_CD_server.src.routes.webhook_routes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.routes.html#CI_CD_server.src.routes.webhook_routes.webhook"><code class="docutils literal notranslate"><span class="pre">webhook()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.services.html">CI_CD_server.src.services package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.services.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.services.html#module-CI_CD_server.src.services.build_service">CI_CD_server.src.services.build_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.build_service.format_build"><code class="docutils literal notranslate"><span class="pre">format_build()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.build_service.get_all_builds"><code class="docutils literal notranslate"><span class="pre">get_all_builds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.build_service.get_build"><code class="docutils literal notranslate"><span class="pre">get_build()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.build_service.get_builds_by_status"><code class="docutils literal notranslate"><span class="pre">get_builds_by_status()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.services.html#module-CI_CD_server.src.services.ci_service">CI_CD_server.src.services.ci_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.ci_service.process_webhook_event"><code class="docutils literal notranslate"><span class="pre">process_webhook_event()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.services.html#module-CI_CD_server.src.services.email_services">CI_CD_server.src.services.email_services module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response"><code class="docutils literal notranslate"><span class="pre">Response</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.__init__"><code class="docutils literal notranslate"><span class="pre">Response.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.append_content"><code class="docutils literal notranslate"><span class="pre">Response.append_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.make_response"><code class="docutils literal notranslate"><span class="pre">Response.make_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.send_response"><code class="docutils literal notranslate"><span class="pre">Response.send_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.set_syntax_result"><code class="docutils literal notranslate"><span class="pre">Response.set_syntax_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.email_services.Response.set_tests_result"><code class="docutils literal notranslate"><span class="pre">Response.set_tests_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.services.html#module-CI_CD_server.src.services.test_runner">CI_CD_server.src.services.test_runner module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.services.html#CI_CD_server.src.services.test_runner.run_project_tests"><code class="docutils literal notranslate"><span class="pre">run_project_tests()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CI_CD_server.src.utils.html">CI_CD_server.src.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html">CI_CD_server.src.utils.code_quality package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#module-CI_CD_server.src.utils.code_quality.formatting">CI_CD_server.src.utils.code_quality.formatting module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#module-CI_CD_server.src.utils.code_quality.quality_check">CI_CD_server.src.utils.code_quality.quality_check module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CI_CD_server.src.utils.code_quality.html#module-CI_CD_server.src.utils.code_quality.syntax">CI_CD_server.src.utils.code_quality.syntax module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#module-CI_CD_server.src.utils.filter">CI_CD_server.src.utils.filter module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.html#CI_CD_server.src.utils.filter.filter_files"><code class="docutils literal notranslate"><span class="pre">filter_files()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#module-CI_CD_server.src.utils.generate_docs">CI_CD_server.src.utils.generate_docs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.html#CI_CD_server.src.utils.generate_docs.generate_docs"><code class="docutils literal notranslate"><span class="pre">generate_docs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#module-CI_CD_server.src.utils.git">CI_CD_server.src.utils.git module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.html#CI_CD_server.src.utils.git.clone_repo"><code class="docutils literal notranslate"><span class="pre">clone_repo()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CI_CD_server.src.utils.html#module-CI_CD_server.src.utils.path">CI_CD_server.src.utils.path module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.html#CI_CD_server.src.utils.path.get_absolute_path"><code class="docutils literal notranslate"><span class="pre">get_absolute_path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="CI_CD_server.src.utils.html#CI_CD_server.src.utils.path.get_repo_path"><code class="docutils literal notranslate"><span class="pre">get_repo_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">CI/CD</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">assignment-2-CI</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CI_CD_server.html">CI_CD_server package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trigger_webhook.html">trigger_webhook module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">assignment-2-CI</a><ul>
+  <li><a href="CI_CD_server.html">CI_CD_server package</a><ul>
+      <li>Previous: <a href="CI_CD_server.html" title="previous chapter">CI_CD_server package</a></li>
+      <li>Next: <a href="CI_CD_server.src.config.html" title="next chapter">CI_CD_server.src.config package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Albin W Woxnerud, Riccardo Coco, Elias Bosæus Fröde and Dmitry Chirin.
+
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+
+      |
+      <a href="_sources/CI_CD_server.src.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+
+
+
+  </body>
+</html>

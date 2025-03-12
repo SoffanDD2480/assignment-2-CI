@@ -1,0 +1,108 @@
+from pathlib import Path
+import pytest
+
+from flask import Flask
+from datetime import datetime
+from typing import Generator, Any
+
+from CI_CD_server.src.database.db import init_db, db
+from CI_CD_server.src.models.build import Build
+
+
+@pytest.fixture
+def app() -> Generator[Flask, None, None]:
+    """Create and configure a new Flask app instance for each test using an in-memory DB."""
+    app = Flask(__name__)
+
+    # non-persistent in-memory database for testing
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    init_db(app)
+    yield app
+
+
+@pytest.fixture
+def client(app: Flask) -> Any:
+    """A test client for the Flask app."""
+    return app.test_client()
+
+
+def test_build_table_name() -> None:
+    """Verify that the Build model has the correct table name."""
+    assert Build.__tablename__ == "builds"
+
+
+def test_add_build(app: Flask, capsys: pytest.CaptureFixture) -> None:
+    """
+    Test the add_build static method.
+
+    Verifies that:
+    - The build is added to the database.
+    - The printed output contains the expected message.
+    - The build_date is properly set.
+    """
+    commit_sha = "abcdef123456"
+    status = "success"
+
+    with app.app_context():
+        Build.add_build(commit_sha, status)
+
+        captured = capsys.readouterr().out
+        assert "Adding build to database." in captured
+
+        build = Build.query.filter_by(commit_sha=commit_sha).first()
+        assert build is not None
+        assert build.status == status
+        assert isinstance(build.build_date, datetime)
+
+
+def test_build_instance_creation(app: Flask) -> None:
+    """
+    Test that a Build instance can be created, added to the session,
+    and properly queried.
+    """
+    commit_sha = "123456abcdef"
+    status = "failed"
+
+    with app.app_context():
+        new_build = Build(commit_sha, status)
+        db.session.add(new_build)
+        db.session.commit()
+
+        build = Build.query.filter_by(commit_sha=commit_sha).first()
+        assert build is not None
+        assert build.commit_sha == commit_sha
+        assert build.status == status
+
+
+def test_persistence_after_db_shutdown(tmp_path: Path) -> None:
+    """
+    Test that data persists after a simulated database shutdown/restart.
+
+    This test uses a temporary file-based SQLite database to verify that data
+    added in one app context remains available after reinitializing the app.
+    """
+    db_file = tmp_path / "builds.db"
+    db_uri = f"sqlite:///{db_file}"
+
+    app1 = Flask(__name__)
+    app1.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    app1.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    init_db(app1)
+
+    with app1.app_context():
+        Build.add_build("persist_sha", "success")
+        build = Build.query.filter_by(commit_sha="persist_sha").first()
+        assert build is not None
+        assert build.status == "success"
+
+    app2 = Flask(__name__)
+    app2.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    app2.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    init_db(app2)
+
+    with app2.app_context():
+        build = Build.query.filter_by(commit_sha="persist_sha").first()
+
+        assert build is not None
+        assert build.status == "success"

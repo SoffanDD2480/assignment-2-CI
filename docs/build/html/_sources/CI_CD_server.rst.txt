@@ -1,0 +1,27 @@
+CI\_CD\_server package
+======================
+
+.. automodule:: CI_CD_server
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   CI_CD_server.src
+   CI_CD_server.tests
+
+Submodules
+----------
+
+CI\_CD\_server.app module
+-------------------------
+
+.. automodule:: CI_CD_server.app
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,7 +1,0 @@
-test\_file\_wrong module
-========================
-
-.. automodule:: test_file_wrong
-   :members:
-   :undoc-members:
-   :show-inheritance:

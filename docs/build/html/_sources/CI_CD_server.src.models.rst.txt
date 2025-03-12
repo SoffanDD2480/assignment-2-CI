@@ -1,0 +1,18 @@
+CI\_CD\_server.src.models package
+=================================
+
+.. automodule:: CI_CD_server.src.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+CI\_CD\_server.src.models.build module
+--------------------------------------
+
+.. automodule:: CI_CD_server.src.models.build
+   :members:
+   :undoc-members:
+   :show-inheritance:

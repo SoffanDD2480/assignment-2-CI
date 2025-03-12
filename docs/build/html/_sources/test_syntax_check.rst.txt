@@ -1,7 +1,0 @@
-test\_syntax\_check module
-==========================
-
-.. automodule:: test_syntax_check
-   :members:
-   :undoc-members:
-   :show-inheritance:
